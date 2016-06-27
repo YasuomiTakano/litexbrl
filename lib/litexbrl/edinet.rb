@@ -32,8 +32,8 @@ module LiteXBRL
         namespaces = doc.namespaces
 
         # TODO 委嬢する？
-        if securities_report? namespaces
-          SecuritiesReport
+        if security_report? namespaces
+          SecurityReport
         # elsif summary2? namespaces
         #   Summary2
         # elsif results_forecast? namespaces
@@ -45,7 +45,7 @@ module LiteXBRL
         end
       end
 
-      def securities_report?(namespaces)
+      def security_report?(namespaces)
         namespaces.keys.any? {|ns| /jpcrp-.+(asr|ussm|ifsm)/ =~ ns }
       end
 

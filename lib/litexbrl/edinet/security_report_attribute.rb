@@ -1,6 +1,6 @@
 module LiteXBRL
   module EDINET
-    module SecuritiesReportAttribute
+    module SecurityReportAttribute
 
       attr_accessor :code, :year, :month, :quarter, :consolidation,
         :net_sales, :operating_income, :ordinary_income, :net_income, :net_income_per_share,

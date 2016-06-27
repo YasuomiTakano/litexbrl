@@ -1,12 +1,12 @@
 module LiteXBRL
   module EDINET
-    class SecuritiesReport < FinancialInformation
-      include SecuritiesReportAttribute
+    class SecurityReport < FinancialInformation
+      include SecurityReportAttribute
 
       def self.read(doc)
         xbrl = read_data doc
 
-        {securities_report: xbrl.attributes}
+        {security_report: xbrl.attributes}
       end
 
       private
