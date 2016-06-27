@@ -43,24 +43,24 @@ module LiteXBRL
         }
       end
 
-      def attributes_results_forecast
-        {
-          code: code,
-          year: quarter == 4 ? year + 1 : year,
-          month: month,
-          quarter: 4,
-          consolidation: consolidation,
-          forecast_net_sales: forecast_net_sales,
-          forecast_operating_income: forecast_operating_income,
-          forecast_ordinary_income: forecast_ordinary_income,
-          forecast_net_income: forecast_net_income,
-          forecast_net_income_per_share: forecast_net_income_per_share,
-          change_in_forecast_net_sales: change_in_forecast_net_sales,
-          change_in_forecast_operating_income: change_in_forecast_operating_income,
-          change_in_forecast_ordinary_income: change_in_forecast_ordinary_income,
-          change_in_forecast_net_income: change_in_forecast_net_income,
-        }
-      end
+      # def attributes_results_forecast
+      #   {
+      #     code: code,
+      #     year: quarter == 4 ? year + 1 : year,
+      #     month: month,
+      #     quarter: 4,
+      #     consolidation: consolidation,
+      #     forecast_net_sales: forecast_net_sales,
+      #     forecast_operating_income: forecast_operating_income,
+      #     forecast_ordinary_income: forecast_ordinary_income,
+      #     forecast_net_income: forecast_net_income,
+      #     forecast_net_income_per_share: forecast_net_income_per_share,
+      #     change_in_forecast_net_sales: change_in_forecast_net_sales,
+      #     change_in_forecast_operating_income: change_in_forecast_operating_income,
+      #     change_in_forecast_ordinary_income: change_in_forecast_ordinary_income,
+      #     change_in_forecast_net_income: change_in_forecast_net_income,
+      #   }
+      # end
 
     end
   end
