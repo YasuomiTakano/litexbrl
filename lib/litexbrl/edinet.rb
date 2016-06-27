@@ -6,7 +6,7 @@ require 'litexbrl/edinet/securities_report'
 require 'litexbrl/edinet/financial_information2'
 
 module LiteXBRL
-  module EDInet
+  module EDINET
 
     class << self
 
