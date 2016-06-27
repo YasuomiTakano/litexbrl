@@ -1,5 +1,5 @@
 module LiteXBRL
-  module EDINET
+  module Edinet
     module AccountItem
 
       def self.define_item(items, &block)

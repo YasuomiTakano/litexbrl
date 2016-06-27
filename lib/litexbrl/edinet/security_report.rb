@@ -1,5 +1,5 @@
 module LiteXBRL
-  module EDINET
+  module Edinet
     class SecurityReport < FinancialInformation
       include SecurityReportAttribute
 

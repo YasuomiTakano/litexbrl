@@ -1,5 +1,5 @@
 module LiteXBRL
-  module EDINET
+  module Edinet
     module SecurityReportAttribute
 
       attr_accessor :code, :year, :month, :quarter, :consolidation,

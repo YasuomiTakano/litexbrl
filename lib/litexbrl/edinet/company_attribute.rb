@@ -1,5 +1,5 @@
 module LiteXBRL
-  module EDINET
+  module Edinet
     module CompanyAttribute
       attr_accessor :code, :company_name, :consolidation
 

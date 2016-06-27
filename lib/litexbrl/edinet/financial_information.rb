@@ -1,5 +1,5 @@
 module LiteXBRL
-  module EDINET
+  module Edinet
     class FinancialInformation
       extend Utils
       include AccountItem
