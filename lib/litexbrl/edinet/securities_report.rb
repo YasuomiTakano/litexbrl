@@ -6,8 +6,7 @@ module LiteXBRL
       def self.read(doc)
         xbrl = read_data doc
 
-        {securities_report: xbrl.attributes,
-          results_forecast: [xbrl.attributes_results_forecast]}
+        {securities_report: xbrl.attributes}
       end
 
       private
