@@ -1,16 +1,12 @@
-require 'litexbrl/tdnet/account_item'
-require 'litexbrl/tdnet/summary_attribute'
-require 'litexbrl/tdnet/results_forecast_attribute'
-require 'litexbrl/tdnet/company_attribute'
-require 'litexbrl/tdnet/financial_information'
-require 'litexbrl/tdnet/summary'
-require 'litexbrl/tdnet/results_forecast'
-require 'litexbrl/tdnet/financial_information2'
-require 'litexbrl/tdnet/summary2'
-require 'litexbrl/tdnet/results_forecast2'
+require 'litexbrl/edinet/account_item'
+require 'litexbrl/edinet/securities_report_attribute'
+require 'litexbrl/edinet/company_attribute'
+require 'litexbrl/edinet/financial_information'
+require 'litexbrl/edinet/securities_report'
+require 'litexbrl/edinet/financial_information2'
 
 module LiteXBRL
-  module TDnet
+  module EDINET
 
     class << self
 
@@ -36,34 +32,34 @@ module LiteXBRL
         namespaces = doc.namespaces
 
         # TODO 委嬢する？
-        if summary? namespaces
-          Summary
-        elsif summary2? namespaces
-          Summary2
-        elsif results_forecast? namespaces
-          ResultsForecast
-        elsif results_forecast2? namespaces
-          ResultsForecast2
+        if securities_report? namespaces
+          SecuritiesReport
+        # elsif summary2? namespaces
+        #   Summary2
+        # elsif results_forecast? namespaces
+        #   ResultsForecast
+        # elsif results_forecast2? namespaces
+        #   ResultsForecast2
         else
           raise StandardError.new "ドキュメントがありません"
         end
       end
 
-      def summary?(namespaces)
-        namespaces.keys.any? {|ns| /tdnet-.+(jpsm|ussm|ifsm)/ =~ ns }
+      def securities_report?(namespaces)
+        namespaces.keys.any? {|ns| /jpcrp-.+(asr|ussm|ifsm)/ =~ ns }
       end
 
-      def summary2?(namespaces)
-        namespaces.keys.any? {|ns| /tse-.+(jpsm|ussm|ifsm)/ =~ ns }
-      end
+      # def summary2?(namespaces)
+      #   namespaces.keys.any? {|ns| /tse-.+(jpsm|ussm|ifsm)/ =~ ns }
+      # end
 
-      def results_forecast?(namespaces)
-        namespaces.keys.any? {|ns| /tdnet-rvfc/ =~ ns }
-      end
+      # def results_forecast?(namespaces)
+      #   namespaces.keys.any? {|ns| /edinet-rvfc/ =~ ns }
+      # end
 
-      def results_forecast2?(namespaces)
-        namespaces.keys.any? {|ns| /tse-rvfc/ =~ ns }
-      end
+      # def results_forecast2?(namespaces)
+      #   namespaces.keys.any? {|ns| /tse-rvfc/ =~ ns }
+      # end
 
     end
 
