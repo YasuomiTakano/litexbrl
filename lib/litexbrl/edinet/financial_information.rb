@@ -18,8 +18,8 @@ module LiteXBRL
         # 連結・非連結を取得します
         #
         def find_consolidation(doc)
-          cons = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYearConsolidatedDuration']/xbrli:entity/xbrli:identifier")
-          non_cons = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYearNonConsolidatedDuration']/xbrli:entity/xbrli:identifier")
+          cons = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYearDuration']/xbrli:entity/xbrli:identifier")
+          non_cons = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYearDuration_NonConsolidatedMember']/xbrli:entity/xbrli:identifier")
 
           if cons
             "Consolidated"

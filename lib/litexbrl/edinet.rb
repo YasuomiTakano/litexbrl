@@ -1,8 +1,8 @@
 require 'litexbrl/edinet/account_item'
-require 'litexbrl/edinet/securities_report_attribute'
+require 'litexbrl/edinet/security_report_attribute'
 require 'litexbrl/edinet/company_attribute'
 require 'litexbrl/edinet/financial_information'
-require 'litexbrl/edinet/securities_report'
+require 'litexbrl/edinet/security_report'
 require 'litexbrl/edinet/financial_information2'
 
 module LiteXBRL
@@ -46,7 +46,7 @@ module LiteXBRL
       end
 
       def security_report?(namespaces)
-        namespaces.keys.any? {|ns| /jpcrp-.+(asr|ussm|ifsm)/ =~ ns }
+        namespaces.keys.any? {|ns| /jpcrp.+(asr|ussm|ifsm)/ =~ ns }
       end
 
       # def summary2?(namespaces)
