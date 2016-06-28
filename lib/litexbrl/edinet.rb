@@ -46,7 +46,7 @@ module LiteXBRL
       end
 
       def security_report?(namespaces)
-        namespaces.keys.any? {|ns| /jpcrp.+(asr|ussm|ifsm)/ =~ ns }
+        namespaces.keys.any? {|ns| /jpcrp.+(asr|q1r|q2r|q3r|q4r)/ =~ ns }
       end
 
       # def summary2?(namespaces)

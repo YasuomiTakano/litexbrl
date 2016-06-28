@@ -43,7 +43,7 @@ module LiteXBRL
 
         # 連結で取れない場合、非連結にする
         unless season
-          consolidation = "NonConsolidated"
+          consolidation = "NonConsolidatedMember"
           season = find_season(doc, consolidation)
         end
 
@@ -54,11 +54,25 @@ module LiteXBRL
       # 通期・四半期を取得します
       #
       def self.find_season(doc, consolidation)
-        year = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYear#{consolidation}Instant']/xbrli:entity/xbrli:identifier")
-        quarter = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentQuarter#{consolidation}Instant']/xbrli:entity/xbrli:identifier")
-        q1 = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentAccumulatedQ1#{consolidation}Instant']/xbrli:entity/xbrli:identifier")
-        q2 = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentAccumulatedQ2#{consolidation}Instant']/xbrli:entity/xbrli:identifier")
-        q3 = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentAccumulatedQ3#{consolidation}Instant']/xbrli:entity/xbrli:identifier")
+        # year = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYear#{consolidation}Instant']/xbrli:entity/xbrli:identifier")
+        # quarter = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentQuarter#{consolidation}Instant']/xbrli:entity/xbrli:identifier")
+        # q1 = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentAccumulatedQ1#{consolidation}Instant']/xbrli:entity/xbrli:identifier")
+        # q2 = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentAccumulatedQ2#{consolidation}Instant']/xbrli:entity/xbrli:identifier")
+        # q3 = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentAccumulatedQ3#{consolidation}Instant']/xbrli:entity/xbrli:identifier")
+
+        puts "consolidation : #{consolidation}"
+
+        year = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYearInstant_#{consolidation}']/xbrli:entity/xbrli:identifier")
+        quarter = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentQuarterInstant_#{consolidation}']/xbrli:entity/xbrli:identifier")
+        q1 = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='Prior1QuarterInstant_#{consolidation}']/xbrli:entity/xbrli:identifier")
+        q2 = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='Prior2QuarterInstant_#{consolidation}']/xbrli:entity/xbrli:identifier")
+        q3 = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='Prior3QuarterInstant_#{consolidation}']/xbrli:entity/xbrli:identifier")
+
+        puts "year : #{year}"
+        puts "quarter : #{quarter}"
+        puts "q1 : #{q1}"
+        puts "q2 : #{q2}"
+        puts "q3 : #{q3}"
 
         if year
           "Year"
@@ -70,6 +84,8 @@ module LiteXBRL
           "AccumulatedQ2"
         elsif q3
           "AccumulatedQ3"
+        # else
+        #   "1"
         end
       end
 
