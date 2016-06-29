@@ -50,7 +50,7 @@ module LiteXBRL
         # 証券コードを取得します
         #
         def find_securities_code(doc, consolidation)
-          elm_code = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYear#{consolidation}Duration']/xbrli:entity/xbrli:identifier")
+          elm_code = doc.at_xpath("//jpdei_cor:SecurityCodeDEI")
           to_securities_code(elm_code)
         end
 
