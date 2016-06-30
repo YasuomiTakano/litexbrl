@@ -15,14 +15,17 @@ module LiteXBRL
       end
 
       # 売上高
-      NET_SALES = ['NetSales', 'OrdinaryRevenuesBK', 'OperatingRevenuesSE', 'OrdinaryRevenuesIN', 'OperatingRevenues',
-        'OperatingRevenuesSpecific', 'GrossOperatingRevenues', 'NetSalesOfCompletedConstructionContracts',
-        'NetSalesUS', 'OperatingRevenuesUS', 'NetSalesAndOperatingRevenuesUS', 'TotalRevenuesUS',
-        'NetSalesIFRS', 'OperatingRevenuesIFRS', 'SalesIFRS', 'RevenueIFRS']
+      # NET_SALES = ['NetSales', 'OrdinaryRevenuesBK', 'OperatingRevenuesSE', 'OrdinaryRevenuesIN', 'OperatingRevenues',
+      #   'OperatingRevenuesSpecific', 'GrossOperatingRevenues', 'NetSalesOfCompletedConstructionContracts',
+      #   'NetSalesUS', 'OperatingRevenuesUS', 'NetSalesAndOperatingRevenuesUS', 'TotalRevenuesUS',
+      #   'NetSalesIFRS', 'OperatingRevenuesIFRS', 'SalesIFRS', 'RevenueIFRS']
+
+      NET_SALES = ['NetSales', 'NetSalesSummaryOfBusinessResults']
 
       # 営業利益
-      OPERATING_INCOME = [['OperatingIncome', 'OperatingIncomeUS', 'OperatingIncomeIFRS'],
-        ['OrdinaryIncome', 'IncomeBeforeIncomeTaxesUS', 'ProfitBeforeTaxIFRS']]
+      # OPERATING_INCOME = [['OperatingIncome', 'OperatingIncomeUS', 'OperatingIncomeIFRS'],
+      #   ['OrdinaryIncome', 'IncomeBeforeIncomeTaxesUS', 'ProfitBeforeTaxIFRS']]
+      OPERATING_INCOME = [['OperatingIncome']]
 
       # 経常利益
       ORDINARY_INCOME = ['OrdinaryIncome', 'IncomeBeforeIncomeTaxesUS', 'IncomeFromContinuingOperationsBeforeIncomeTaxesUS',
