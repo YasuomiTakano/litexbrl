@@ -128,14 +128,12 @@ module LiteXBRL
         end
 
         #
-        # 決算短信サマリの勘定科目の値を取得します
+        # 有価証券報告書の勘定科目の値を取得します
         #
         def find_value_tse_t_ed(doc, item, context)
-          puts "item : #{item}"
-          puts "context : #{context}"
 
           find_value(doc, item, context) do |item, context|
-            "//xbrli:xbrl/tse-t-ed:#{item}[@contextRef='#{context}']"
+            "//xbrli:xbrl/jpcrp_cor:#{item}[@contextRef='#{context}']"
           end
         end
 
