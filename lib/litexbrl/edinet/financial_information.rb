@@ -51,23 +51,29 @@ module LiteXBRL
         #
         def find_securities_code(doc, consolidation)
           elm_code = doc.at_xpath("//jpdei_cor:SecurityCodeDEI")
-          to_securities_code(elm_code)
+          # to_securities_code(elm_code)
+          code = to_securities_code(elm_code)
+          puts "code : #{code}"
         end
 
         #
         # 決算年を取得します
         #
         def find_year(doc, consolidation)
-          elm_end = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYear#{consolidation}Duration']/xbrli:period/xbrli:endDate")
-          to_year(elm_end)
+          elm_end = doc.at_xpath("//jpdei_cor:CurrentFiscalYearEndDateDEI")
+          # to_year(elm_end)
+          year = to_year(elm_end)
+          puts "year : #{year}"
         end
 
         #
         # 決算月を取得します
         #
         def find_month(doc, consolidation)
-          elm_end = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYear#{consolidation}Duration']/xbrli:period/xbrli:endDate")
-          to_month(elm_end)
+          elm_end = doc.at_xpath("//jpdei_cor:CurrentFiscalYearEndDateDEI")
+          # to_month(elm_end)
+          month = to_month(elm_end)
+          puts "month : #{month}"
         end
 
         #
