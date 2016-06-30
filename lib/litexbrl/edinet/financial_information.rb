@@ -36,12 +36,11 @@ module LiteXBRL
         def context_hash(consolidation, season)
           raise StandardError.new("通期・四半期が設定されていません。") unless season
 
-          year_duration = "Year#{consolidation}Duration"
-
+          puts year_duration = "YearDuration_#{consolidation}"
           {
-            context_duration: "Current#{season}#{consolidation}Duration",
-            context_prior_duration: "Prior#{season}#{consolidation}Duration",
-            context_instant: "Current#{season}#{consolidation}Instant",
+            context_duration: "Current#{season}Duration_#{consolidation}",
+            context_prior_duration: "Prior#{season}Duration_#{consolidation}",
+            context_instant: "Current#{season}Instant_#{consolidation}",
             context_forecast: ->(quarter) { quarter == 4 ? "Next#{year_duration}" : "Current#{year_duration}"},
           }
         end
@@ -80,9 +79,16 @@ module LiteXBRL
         # 四半期を取得します
         #
         def find_quarter(doc, consolidation, context)
-          elm_end = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYear#{consolidation}Duration']/xbrli:period/xbrli:endDate")
+          # [@id='CurrentYearDuration' or @id='CurrentYTDDuration']
+          elm_end = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYearDuration_#{consolidation}' or @id='CurrentYTDDuration_#{consolidation}']/xbrli:period/xbrli:endDate")
           elm_instant = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='#{context[:context_instant]}']/xbrli:period/xbrli:instant")
-          to_quarter(elm_end, elm_instant)
+          # to_quarter(elm_end, elm_instant)
+          quarter = to_quarter(elm_end, elm_instant)
+          puts "elm_end : #{elm_end}"
+          puts "elm_instant : #{elm_instant}"
+          puts "quarter : #{quarter}"
+
+
         end
 
         #
@@ -125,6 +131,9 @@ module LiteXBRL
         # 決算短信サマリの勘定科目の値を取得します
         #
         def find_value_tse_t_ed(doc, item, context)
+          puts "item : #{item}"
+          puts "context : #{context}"
+
           find_value(doc, item, context) do |item, context|
             "//xbrli:xbrl/tse-t-ed:#{item}[@contextRef='#{context}']"
           end

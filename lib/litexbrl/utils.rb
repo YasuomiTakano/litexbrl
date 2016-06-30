@@ -3,7 +3,7 @@ module LiteXBRL
 
     SECURITIES_CODE = /([\d|０-９]{4})/
     CONSOLIDATED = "Consolidated"
-    NON_CONSOLIDATED = "NonConsolidated"
+    NON_CONSOLIDATED = "NonConsolidatedMember"
 
     def hash_with_default(default, hash)
       hash.default = default
