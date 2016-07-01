@@ -134,7 +134,9 @@ module LiteXBRL
         def find_value_tse_t_ed(doc, item, context)
 
           find_value(doc, item, context) do |item, context|
-            "//xbrli:xbrl/jpcrp_cor:#{item}[@contextRef='#{context}'] | //xbrli:xbrl/jppfs_cor:#{item}[@contextRef='#{context}'] | //xbrli:xbrl/jpdei_cor:#{item}[@contextRef='#{context}']"
+            "//xbrli:xbrl/jpcrp_cor:#{item}[@contextRef='#{context}' or @contextRef='FilingDateInstant'] | //xbrli:xbrl/jppfs_cor:#{item}[@contextRef='#{context}' or @contextRef='FilingDateInstant'] | //xbrli:xbrl/jpdei_cor:#{item}[@contextRef='#{context}' or @contextRef='FilingDateInstant']"
+                        # "//xbrli:xbrl/tse-t-ed:#{item}[@contextRef='FilingDateInstant']"
+
           end
         end
 

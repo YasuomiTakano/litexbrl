@@ -121,17 +121,16 @@ module LiteXBRL
       FISCAL_YEAR_COVER_PAGE = ['FiscalYearCoverPage']
 
       # 決算月
-      CURRENT_FISCAL_YEAR_END_DATE = ['CurrentFiscalYearEndDate']
+      CURRENT_FISCAL_YEAR_END_DATE = ['CurrentFiscalYearEndDateDEI']
 
       # 企業名
-      COMPANY_NAME = ['CompanyName']
+      COMPANY_NAME = ['CompanyNameCoverPage']
 
       # 提出日
-      FILING_DATE = ['FilingDate']
+      FILING_DATE = ['FilingDateCoverPage']
 
       # 従業員数
       NUMBER_OF_EMPLOYEES = ['NumberOfEmployees']
-
     end
   end
 end
