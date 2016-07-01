@@ -47,6 +47,8 @@ module LiteXBRL
           season = find_season(doc, consolidation)
         end
 
+        puts "season : #{season}"
+
         return consolidation, season
       end
 
@@ -72,6 +74,7 @@ module LiteXBRL
         if year
           "Year"
         elsif quarter
+          # "YTD"
           "Quarter"
         elsif q1
           "AccumulatedQ1"

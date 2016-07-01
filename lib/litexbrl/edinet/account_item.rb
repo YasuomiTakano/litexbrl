@@ -15,16 +15,9 @@ module LiteXBRL
       end
 
       # 売上高
-      # NET_SALES = ['NetSales', 'OrdinaryRevenuesBK', 'OperatingRevenuesSE', 'OrdinaryRevenuesIN', 'OperatingRevenues',
-      #   'OperatingRevenuesSpecific', 'GrossOperatingRevenues', 'NetSalesOfCompletedConstructionContracts',
-      #   'NetSalesUS', 'OperatingRevenuesUS', 'NetSalesAndOperatingRevenuesUS', 'TotalRevenuesUS',
-      #   'NetSalesIFRS', 'OperatingRevenuesIFRS', 'SalesIFRS', 'RevenueIFRS']
-
       NET_SALES = ['NetSales', 'NetSalesSummaryOfBusinessResults']
 
       # 営業利益
-      # OPERATING_INCOME = [['OperatingIncome', 'OperatingIncomeUS', 'OperatingIncomeIFRS'],
-      #   ['OrdinaryIncome', 'IncomeBeforeIncomeTaxesUS', 'ProfitBeforeTaxIFRS']]
       OPERATING_INCOME = [['OperatingIncome']]
 
       # 経常利益
@@ -121,8 +114,23 @@ module LiteXBRL
       NET_ASSETS_PER_SHARE = ["NetAssetsPerShare", "EquityAttributableToOwnersOfParentPerShareIFRS", "ShareholdersEquityPerShareUS"]
 
 
+      # 報告書のタイプ
+      DOCUMENT_TITLE_COVER_PAGE = ['DocumentTitleCoverPage']
+
+      # 決算期
+      FISCAL_YEAR_COVER_PAGE = ['FiscalYearCoverPage']
+
+      # 決算月
+      CURRENT_FISCAL_YEAR_END_DATE = ['CurrentFiscalYearEndDate']
+
       # 企業名
       COMPANY_NAME = ['CompanyName']
+
+      # 提出日
+      FILING_DATE = ['FilingDate']
+
+      # 従業員数
+      NUMBER_OF_EMPLOYEES = ['NumberOfEmployees']
 
     end
   end

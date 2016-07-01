@@ -36,7 +36,8 @@ module LiteXBRL
         def context_hash(consolidation, season)
           raise StandardError.new("通期・四半期が設定されていません。") unless season
 
-          puts year_duration = "YearDuration_#{consolidation}"
+          puts year_duration = "#{season}Duration_#{consolidation}"
+          # puts year_duration = season == "Year" ? "YearDuration_#{consolidation}" : "YTDDuration_#{consolidation}"
           {
             context_duration: "Current#{season}Duration_#{consolidation}",
             context_prior_duration: "Prior#{season}Duration_#{consolidation}",
@@ -50,9 +51,9 @@ module LiteXBRL
         #
         def find_securities_code(doc, consolidation)
           elm_code = doc.at_xpath("//jpdei_cor:SecurityCodeDEI")
-          # to_securities_code(elm_code)
-          code = to_securities_code(elm_code)
-          puts "code : #{code}"
+          to_securities_code(elm_code)
+          # code = to_securities_code(elm_code)
+          # puts "code : #{code}"
         end
 
         #
@@ -60,9 +61,9 @@ module LiteXBRL
         #
         def find_year(doc, consolidation)
           elm_end = doc.at_xpath("//jpdei_cor:CurrentFiscalYearEndDateDEI")
-          # to_year(elm_end)
-          year = to_year(elm_end)
-          puts "year : #{year}"
+          to_year(elm_end)
+          # year = to_year(elm_end)
+          # puts "year : #{year}"
         end
 
         #
@@ -70,9 +71,9 @@ module LiteXBRL
         #
         def find_month(doc, consolidation)
           elm_end = doc.at_xpath("//jpdei_cor:CurrentFiscalYearEndDateDEI")
-          # to_month(elm_end)
-          month = to_month(elm_end)
-          puts "month : #{month}"
+          to_month(elm_end)
+          # month = to_month(elm_end)
+          # puts "month : #{month}"
         end
 
         #
@@ -82,11 +83,11 @@ module LiteXBRL
           # [@id='CurrentYearDuration' or @id='CurrentYTDDuration']
           elm_end = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYearDuration_#{consolidation}' or @id='CurrentYTDDuration_#{consolidation}']/xbrli:period/xbrli:endDate")
           elm_instant = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='#{context[:context_instant]}']/xbrli:period/xbrli:instant")
-          # to_quarter(elm_end, elm_instant)
-          quarter = to_quarter(elm_end, elm_instant)
-          puts "elm_end : #{elm_end}"
-          puts "elm_instant : #{elm_instant}"
-          puts "quarter : #{quarter}"
+          to_quarter(elm_end, elm_instant)
+          # quarter = to_quarter(elm_end, elm_instant)
+          # puts "elm_end : #{elm_end}"
+          # puts "elm_instant : #{elm_instant}"
+          # puts "quarter : #{quarter}"
 
 
         end
