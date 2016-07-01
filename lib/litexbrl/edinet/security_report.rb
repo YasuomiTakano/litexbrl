@@ -186,10 +186,6 @@ module LiteXBRL
         xbrl
       end
 
-      # def self.find_value_to_s(doc, item, context)
-      #   to_s find_value_tse_t_ed(doc, item, context)
-      # end
-
       def self.find_value_to_mill(doc, item, context)
         to_mill find_value_tse_t_ed(doc, item, context)
       end
