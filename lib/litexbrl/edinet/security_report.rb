@@ -166,22 +166,24 @@ module LiteXBRL
         xbrl.change_in_forecast_net_income = find_value_to_f(doc, CHANGE_FORECAST_NET_INCOME, context[:context_forecast].call(xbrl.quarter))
 
         # 報告書のタイプ
-        xbrl.document_title_cover_page = find_value_tse_t_ed(doc, DOCUMENT_TITLE_COVER_PAGE, context[:context_duration])
+        xbrl.document_title_cover_page = find_value_tse_t_ed(doc, DOCUMENT_TITLE_COVER_PAGE, context[:filing_date_instant])
 
         # 決算期
-        xbrl.fiscal_year_cover_page = find_value_tse_t_ed(doc, FISCAL_YEAR_COVER_PAGE, context[:context_duration])
+        xbrl.fiscal_year_cover_page = find_value_tse_t_ed(doc, FISCAL_YEAR_COVER_PAGE, context[:filing_date_instant])
 
         # 決算月
-        xbrl.current_fiscal_year_end_date = find_value_tse_t_ed(doc, CURRENT_FISCAL_YEAR_END_DATE, context[:context_duration])
+        xbrl.current_fiscal_year_end_date = find_value_tse_t_ed(doc, CURRENT_FISCAL_YEAR_END_DATE, context[:filing_date_instant])
 
         # 企業名
-        xbrl.company_name = find_value_tse_t_ed(doc, COMPANY_NAME, context[:context_duration])
+        xbrl.company_name = find_value_tse_t_ed(doc, COMPANY_NAME, context[:filing_date_instant])
 
         # 提出日
-        xbrl.filing_date = find_value_tse_t_ed(doc, FILING_DATE, context[:context_duration])
+        xbrl.filing_date = find_value_tse_t_ed(doc, FILING_DATE, context[:filing_date_instant])
 
         # 従業員数
-        xbrl.number_of_employees = find_value_tse_t_ed(doc, NUMBER_OF_EMPLOYEES, context[:context_duration])
+        xbrl.number_of_employees = find_value_tse_t_ed(doc, NUMBER_OF_EMPLOYEES, context[:context_instant])
+        # puts "current_year_instant : #{context[:current_year_instant]}"
+
 
         xbrl
       end

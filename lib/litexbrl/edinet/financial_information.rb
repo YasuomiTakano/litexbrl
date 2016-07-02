@@ -43,6 +43,7 @@ module LiteXBRL
             context_prior_duration: "Prior#{season}Duration_#{consolidation}",
             context_instant: "Current#{season}Instant_#{consolidation}",
             context_forecast: ->(quarter) { quarter == 4 ? "Next#{year_duration}" : "Current#{year_duration}"},
+            filing_date_instant: "FilingDateInstant",
           }
         end
 
@@ -134,9 +135,7 @@ module LiteXBRL
         def find_value_tse_t_ed(doc, item, context)
 
           find_value(doc, item, context) do |item, context|
-            "//xbrli:xbrl/jpcrp_cor:#{item}[@contextRef='#{context}' or @contextRef='FilingDateInstant'] | //xbrli:xbrl/jppfs_cor:#{item}[@contextRef='#{context}' or @contextRef='FilingDateInstant'] | //xbrli:xbrl/jpdei_cor:#{item}[@contextRef='#{context}' or @contextRef='FilingDateInstant']"
-                        # "//xbrli:xbrl/tse-t-ed:#{item}[@contextRef='FilingDateInstant']"
-
+            "//xbrli:xbrl/jpcrp_cor:#{item}[@contextRef='#{context}'] | //xbrli:xbrl/jppfs_cor:#{item}[@contextRef='#{context}'] | //xbrli:xbrl/jpdei_cor:#{item}[@contextRef='#{context}']"
           end
         end
 
