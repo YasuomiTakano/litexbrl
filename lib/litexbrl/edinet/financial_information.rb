@@ -36,11 +36,10 @@ module LiteXBRL
         def context_hash(consolidation, season)
           raise StandardError.new("通期・四半期が設定されていません。") unless season
 
-          puts year_duration = "#{season}Duration_#{consolidation}"
-          # puts year_duration = season == "Year" ? "YearDuration_#{consolidation}" : "YTDDuration_#{consolidation}"
+          puts year_duration = season == "Quarter" ? "YTDDuration_#{consolidation}" : "#{season}Duration_#{consolidation}"
           {
-            context_duration: "Current#{season}Duration_#{consolidation}",
-            context_prior_duration: "Prior#{season}Duration_#{consolidation}",
+            context_duration: "Current#{year_duration}",
+            context_prior_duration: "Prior#{year_duration}",
             context_instant: "Current#{season}Instant_#{consolidation}",
             context_forecast: ->(quarter) { quarter == 4 ? "Next#{year_duration}" : "Current#{year_duration}"},
             filing_date_instant: "FilingDateInstant",

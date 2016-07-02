@@ -74,7 +74,6 @@ module LiteXBRL
         if year
           "Year"
         elsif quarter
-          # "YTD"
           "Quarter"
         elsif q1
           "AccumulatedQ1"
@@ -89,13 +88,13 @@ module LiteXBRL
 
       def self.find_data(doc, xbrl, context)
         # 売上高
-        xbrl.net_sales = find_value_to_mill(doc, NET_SALES, context[:context_duration])
+        xbrl.net_sales = find_value_tse_t_ed(doc, NET_SALES, context[:context_duration])
         # 営業利益
-        xbrl.operating_income = find_value_to_mill(doc, OPERATING_INCOME, context[:context_duration])
+        xbrl.operating_income = find_value_tse_t_ed(doc, OPERATING_INCOME, context[:context_duration])
         # 経常利益
-        xbrl.ordinary_income = find_value_to_mill(doc, ORDINARY_INCOME, context[:context_duration])
+        xbrl.ordinary_income = find_value_tse_t_ed(doc, ORDINARY_INCOME, context[:context_duration])
         # 純利益
-        xbrl.net_income = find_value_to_mill(doc, NET_INCOME, context[:context_duration])
+        xbrl.net_income = find_value_tse_t_ed(doc, NET_INCOME, context[:context_duration])
         # 1株当たり純利益
         xbrl.net_income_per_share = find_value_to_f(doc, NET_INCOME_PER_SHARE, context[:context_duration])
 
