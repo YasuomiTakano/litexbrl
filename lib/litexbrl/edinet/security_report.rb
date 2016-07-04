@@ -20,6 +20,7 @@ module LiteXBRL
       def self.find_base_data(doc)
         consolidation, season = find_consolidation_and_season(doc)
         context = context_hash(consolidation, season)
+        id = id_hash(consolidation, season)
 
         xbrl = new
 
@@ -181,8 +182,6 @@ module LiteXBRL
 
         # 従業員数
         xbrl.number_of_employees = find_value_tse_t_ed(doc, NUMBER_OF_EMPLOYEES, context[:context_instant])
-        # puts "current_year_instant : #{context[:current_year_instant]}"
-
 
         xbrl
       end

@@ -43,6 +43,19 @@ module LiteXBRL
             context_instant: "Current#{season}Instant_#{consolidation}",
             context_forecast: ->(quarter) { quarter == 4 ? "Next#{year_duration}" : "Current#{year_duration}"},
             filing_date_instant: "FilingDateInstant",
+            reportable_segments_member: "Current#{year_duration}_.+ReportableSegmentsMember"
+          }
+        end
+
+        #
+        # idを設定します
+        #
+        def id_hash(consolidation, season)
+          raise StandardError.new("idが設定されていません。") unless season
+
+          puts year_duration = season == "Quarter" ? "YTDDuration_#{consolidation}" : "#{season}Duration_#{consolidation}"
+          {
+            reportable_segments_member: "Current#{year_duration}_.+ReportableSegmentsMember"
           }
         end
 
