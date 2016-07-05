@@ -194,8 +194,9 @@ module LiteXBRL
           segments = Array.new()
           elm_array.each do |elm|
             segment = segment_hash
-            segment[:segment_context_ref_name] = to_segment_context_ref(elm.content, context)
-            puts segment
+            segment[:segment_context_ref_name] = to_segment_context_ref_name(elm.content, context)
+            segment[:segment_english_name] = to_segment_english_name(elm)
+            # puts segment
             segments.push segment
           end
           # puts segments

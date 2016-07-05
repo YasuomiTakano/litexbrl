@@ -74,9 +74,13 @@ module LiteXBRL
       !!(val && val != "")
     end
 
-    def to_segment_context_ref(elm, context)
+    def to_segment_context_ref_name(elm, context)
       context + "_" + elm.delete(":")
-      # elm.slice!(":")
+    end
+
+    def to_segment_english_name(elm)
+      /:/ =~ elm
+      $'.gsub!(/ReportableSegmentsMember/,'')
     end
   end
 end
