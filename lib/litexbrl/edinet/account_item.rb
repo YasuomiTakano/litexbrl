@@ -15,10 +15,10 @@ module LiteXBRL
       end
 
       # 売上高
-      NET_SALES = ['NetSales', 'NetSalesSummaryOfBusinessResults']
+      NET_SALES = ['NetSales', 'NetSalesSummaryOfBusinessResults', 'RevenueIFRSSummaryOfBusinessResults ']
 
       # 営業利益
-      OPERATING_INCOME = [['OperatingIncome']]
+      OPERATING_INCOME = [['OperatingIncome', 'OperatingIncomeIFRSSummaryOfBusinessResults', 'GrossProfi']]
 
       # 経常利益
       ORDINARY_INCOME = ['OrdinaryIncome', 'IncomeBeforeIncomeTaxesUS', 'IncomeFromContinuingOperationsBeforeIncomeTaxesUS',
@@ -131,6 +131,19 @@ module LiteXBRL
 
       # 従業員数
       NUMBER_OF_EMPLOYEES = ['NumberOfEmployees']
+
+      # セグメント毎のcontextRef
+      SEGMENT_CONTEXT_REF_NAME = ['']
+
+      # セグメント毎の英名
+      SEGMENT_ENGLISH_NAME = ['']
+
+      # セグメント毎の売上高
+      SEGMENT_SALES = ['']
+
+      # セグメント毎の営業利益
+      SEGMENT_OPERATING_PROFIT = ['']
+
     end
   end
 end

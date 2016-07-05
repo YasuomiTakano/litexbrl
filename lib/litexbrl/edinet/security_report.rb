@@ -12,9 +12,11 @@ module LiteXBRL
       private
 
       def self.read_data(doc)
-        xbrl, context = find_base_data(doc)
+        xbrl, context, id = find_base_data(doc)
+        find_data(doc, xbrl, context, id)
 
-        find_data(doc, xbrl, context)
+        # xbrl, context = find_base_data(doc)
+        # find_data(doc, xbrl, context)
       end
 
       def self.find_base_data(doc)
@@ -23,6 +25,9 @@ module LiteXBRL
         id = id_hash(consolidation, season)
 
         xbrl = new
+
+        # puts xbrl.attributes
+        # puts id
 
         # 証券コード
         xbrl.code = find_securities_code(doc, consolidation)
@@ -35,7 +40,8 @@ module LiteXBRL
         # 連結・非連結
         xbrl.consolidation = to_consolidation(consolidation)
 
-        return xbrl, context
+        return xbrl, context, id
+        # return xbrl, context
       end
 
       def self.find_consolidation_and_season(doc)
@@ -87,7 +93,8 @@ module LiteXBRL
         end
       end
 
-      def self.find_data(doc, xbrl, context)
+      # def self.find_data(doc, xbrl, context)
+      def self.find_data(doc, xbrl, context, id)
         # 売上高
         xbrl.net_sales = find_value_tse_t_ed(doc, NET_SALES, context[:context_duration])
         # 営業利益
@@ -156,6 +163,9 @@ module LiteXBRL
         # 通期予想1株当たり純利益
         xbrl.forecast_net_income_per_share = find_value_to_f(doc, FORECAST_NET_INCOME_PER_SHARE, context[:context_forecast].call(xbrl.quarter))
 
+
+
+
         # 通期予想売上高前年比
         xbrl.change_in_forecast_net_sales = find_value_to_f(doc, CHANGE_FORECAST_NET_SALES, context[:context_forecast].call(xbrl.quarter))
         # 通期予想営業利益前年比
@@ -182,6 +192,21 @@ module LiteXBRL
 
         # 従業員数
         xbrl.number_of_employees = find_value_tse_t_ed(doc, NUMBER_OF_EMPLOYEES, context[:context_instant])
+
+        # セグメント情報
+        xbrl.segments = find_value_reportable_segments_member(doc, id[:reportable_segments_member], context[:context_duration])
+
+        # elm_array.each do |elm|
+        #   puts "elm.content : #{elm.content}"
+        # end
+
+        # xbrl.segments = Array.new()
+        # hoge1 = {'hoge1' => 'hogege1'}
+        # hoge2 = {'hoge2' => 'hogege2'}
+        # hoge3 = {'hoge3' => 'hogege3'}
+        # xbrl.segments.push hoge1
+        # xbrl.segments.push hoge2
+        # xbrl.segments.push hoge3
 
         xbrl
       end

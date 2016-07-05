@@ -43,7 +43,6 @@ module LiteXBRL
             context_instant: "Current#{season}Instant_#{consolidation}",
             context_forecast: ->(quarter) { quarter == 4 ? "Next#{year_duration}" : "Current#{year_duration}"},
             filing_date_instant: "FilingDateInstant",
-            reportable_segments_member: "Current#{year_duration}_.+ReportableSegmentsMember"
           }
         end
 
@@ -52,10 +51,9 @@ module LiteXBRL
         #
         def id_hash(consolidation, season)
           raise StandardError.new("idが設定されていません。") unless season
-
           puts year_duration = season == "Quarter" ? "YTDDuration_#{consolidation}" : "#{season}Duration_#{consolidation}"
           {
-            reportable_segments_member: "Current#{year_duration}_.+ReportableSegmentsMember"
+            reportable_segments_member: "[starts-with(@id,'Current#{year_duration}_') and not(substring-after(@id, 'ReportableSegmentsMember'))]"
           }
         end
 
@@ -65,8 +63,6 @@ module LiteXBRL
         def find_securities_code(doc, consolidation)
           elm_code = doc.at_xpath("//jpdei_cor:SecurityCodeDEI")
           to_securities_code(elm_code)
-          # code = to_securities_code(elm_code)
-          # puts "code : #{code}"
         end
 
         #
@@ -75,8 +71,6 @@ module LiteXBRL
         def find_year(doc, consolidation)
           elm_end = doc.at_xpath("//jpdei_cor:CurrentFiscalYearEndDateDEI")
           to_year(elm_end)
-          # year = to_year(elm_end)
-          # puts "year : #{year}"
         end
 
         #
@@ -85,24 +79,15 @@ module LiteXBRL
         def find_month(doc, consolidation)
           elm_end = doc.at_xpath("//jpdei_cor:CurrentFiscalYearEndDateDEI")
           to_month(elm_end)
-          # month = to_month(elm_end)
-          # puts "month : #{month}"
         end
 
         #
         # 四半期を取得します
         #
         def find_quarter(doc, consolidation, context)
-          # [@id='CurrentYearDuration' or @id='CurrentYTDDuration']
           elm_end = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYearDuration_#{consolidation}' or @id='CurrentYTDDuration_#{consolidation}']/xbrli:period/xbrli:endDate")
           elm_instant = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='#{context[:context_instant]}']/xbrli:period/xbrli:instant")
           to_quarter(elm_end, elm_instant)
-          # quarter = to_quarter(elm_end, elm_instant)
-          # puts "elm_end : #{elm_end}"
-          # puts "elm_instant : #{elm_instant}"
-          # puts "quarter : #{quarter}"
-
-
         end
 
         #
@@ -170,6 +155,51 @@ module LiteXBRL
 
             nil # 該当なし
           end
+        end
+
+
+
+        #
+        # segmentを設定します
+        #
+        attr_accessor :segment_context_ref_name, :segment_english_name, :segment_sales, :segment_operating_profit
+        def segment_hash
+        {
+          segment_context_ref_name: segment_context_ref_name,
+          segment_english_name: segment_english_name,
+          segment_sales: segment_sales,
+          segment_operating_profit: segment_operating_profit
+        }
+        end
+
+
+        #
+        # 有価証券報告書の報告セグメントの値を取得します
+        #
+        def find_value_reportable_segments_member(doc, id, context)
+
+          find_value_specified_id(doc, id, context) do |id|
+            "//xbrli:xbrl/xbrli:context#{id}/xbrli:scenario/xbrldi:explicitMember[@dimension='jpcrp_cor:OperatingSegmentsAxis']"
+          end
+        end
+
+        #
+        # 報告セグメントの値を取得します
+        #
+        def find_value_specified_id(doc, id, context)
+          xpath = yield(id)
+          elm_array = Array.new()
+          elm_array = doc.xpath xpath
+
+          segments = Array.new()
+          elm_array.each do |elm|
+            segment = segment_hash
+            segment[:segment_context_ref_name] = to_segment_context_ref(elm.content, context)
+            puts segment
+            segments.push segment
+          end
+          # puts segments
+          segments
         end
       end
 
