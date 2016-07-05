@@ -176,9 +176,9 @@ module LiteXBRL
         #
         # 有価証券報告書の報告セグメントの値を取得します
         #
-        def find_value_reportable_segments_member(doc, id, context)
+        def find_value_reportable_segments_member(doc, id)
 
-          find_value_specified_id(doc, id, context) do |id|
+          find_value_specified_id(doc, id) do |id|
             "//xbrli:xbrl/xbrli:context#{id}/xbrli:scenario/xbrldi:explicitMember[@dimension='jpcrp_cor:OperatingSegmentsAxis']"
           end
         end
@@ -186,21 +186,24 @@ module LiteXBRL
         #
         # 報告セグメントの値を取得します
         #
-        def find_value_specified_id(doc, id, context)
+        def find_value_specified_id(doc, id)
           xpath = yield(id)
           elm_array = Array.new()
           elm_array = doc.xpath xpath
 
-          segments = Array.new()
-          elm_array.each do |elm|
-            segment = segment_hash
-            segment[:segment_context_ref_name] = to_segment_context_ref_name(elm.content, context)
-            segment[:segment_english_name] = to_segment_english_name(elm)
-            # puts segment
-            segments.push segment
-          end
+          # segments = Array.new()
+          # elm_array.each do |elm|
+          #   segment = segment_hash
+          #   segment[:segment_context_ref_name] = to_segment_context_ref_name(elm.content, context)
+          #   segment[:segment_english_name] = to_segment_english_name(elm)
+          #   segment[:segment_sales] = find_value_tse_t_ed(doc, NET_SALES, segment[:segment_context_ref_name])
+          #   segment[:segment_operating_profit] = find_value_tse_t_ed(doc, OPERATING_INCOME, segment[:segment_context_ref_name])
+          #   # puts segment
+          #   segments.push segment
+          # end
           # puts segments
-          segments
+          # segments
+          elm_array
         end
       end
 

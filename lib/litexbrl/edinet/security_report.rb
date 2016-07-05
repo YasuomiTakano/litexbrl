@@ -194,11 +194,21 @@ module LiteXBRL
         xbrl.number_of_employees = find_value_tse_t_ed(doc, NUMBER_OF_EMPLOYEES, context[:context_instant])
 
         # セグメント情報
-        xbrl.segments = find_value_reportable_segments_member(doc, id[:reportable_segments_member], context[:context_duration])
+        elm_array = find_value_reportable_segments_member(doc, id[:reportable_segments_member])
 
         # elm_array.each do |elm|
         #   puts "elm.content : #{elm.content}"
         # end
+        # segments = Array.new()
+        xbrl.segments = Array.new()
+        elm_array.each do |elm|
+          segment = segment_hash
+          segment[:segment_context_ref_name] = to_segment_context_ref_name(elm.content, context[:context_duration])
+          segment[:segment_english_name] = to_segment_english_name(elm)
+          segment[:segment_sales] = find_value_tse_t_ed(doc, NET_SALES, segment[:segment_context_ref_name])
+          segment[:segment_operating_profit] = find_value_tse_t_ed(doc, OPERATING_INCOME, segment[:segment_context_ref_name])
+          xbrl.segments.push segment
+        end
 
         # xbrl.segments = Array.new()
         # hoge1 = {'hoge1' => 'hogege1'}
