@@ -36,6 +36,7 @@ module LiteXBRL
         def context_hash(consolidation, season)
           raise StandardError.new("通期・四半期が設定されていません。") unless season
 
+          year_duration = season == "Quarter" ? "YTDDuration_#{consolidation}" : "#{season}Duration_#{consolidation}"
           {
             context_duration: "Current#{year_duration}",
             context_prior_duration: "Prior#{year_duration}",
@@ -50,6 +51,7 @@ module LiteXBRL
         #
         def id_hash(consolidation, season)
           raise StandardError.new("idが設定されていません。") unless season
+          year_duration = season == "Quarter" ? "YTDDuration_#{consolidation}" : "#{season}Duration_#{consolidation}"
           {
             reportable_segments_member: "[starts-with(@id,'Current#{year_duration}_') and not(substring-after(@id, 'ReportableSegmentsMember'))]"
           }
