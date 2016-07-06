@@ -68,17 +68,6 @@ module LiteXBRL
           change_in_forecast_net_income: change_in_forecast_net_income,
         }
       end
-
-      # def segment
-      #   {
-      #     segment_context_ref_name: segment_context_ref_name,
-      #     segment_english_name: segment_english_name,
-      #     segment_sales: segment_sales,
-      #     segment_operating_profit: segment_operating_profit
-      #   }
-      # end
-
-
     end
   end
 end

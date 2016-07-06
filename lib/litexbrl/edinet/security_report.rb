@@ -15,8 +15,6 @@ module LiteXBRL
         xbrl, context, id = find_base_data(doc)
         find_data(doc, xbrl, context, id)
 
-        # xbrl, context = find_base_data(doc)
-        # find_data(doc, xbrl, context)
       end
 
       def self.find_base_data(doc)
@@ -25,9 +23,6 @@ module LiteXBRL
         id = id_hash(consolidation, season)
 
         xbrl = new
-
-        # puts xbrl.attributes
-        # puts id
 
         # 証券コード
         xbrl.code = find_securities_code(doc, consolidation)
@@ -41,7 +36,6 @@ module LiteXBRL
         xbrl.consolidation = to_consolidation(consolidation)
 
         return xbrl, context, id
-        # return xbrl, context
       end
 
       def self.find_consolidation_and_season(doc)
@@ -54,8 +48,6 @@ module LiteXBRL
           season = find_season(doc, consolidation)
         end
 
-        puts "season : #{season}"
-
         return consolidation, season
       end
 
@@ -64,19 +56,11 @@ module LiteXBRL
       #
       def self.find_season(doc, consolidation)
 
-        puts "consolidation : #{consolidation}"
-
         year = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYearInstant_#{consolidation}']/xbrli:entity/xbrli:identifier")
         quarter = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentQuarterInstant_#{consolidation}']/xbrli:entity/xbrli:identifier")
         q1 = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='Prior1QuarterInstant_#{consolidation}']/xbrli:entity/xbrli:identifier")
         q2 = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='Prior2QuarterInstant_#{consolidation}']/xbrli:entity/xbrli:identifier")
         q3 = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='Prior3QuarterInstant_#{consolidation}']/xbrli:entity/xbrli:identifier")
-
-        puts "year : #{year}"
-        puts "quarter : #{quarter}"
-        puts "q1 : #{q1}"
-        puts "q2 : #{q2}"
-        puts "q3 : #{q3}"
 
         if year
           "Year"
@@ -88,21 +72,18 @@ module LiteXBRL
           "AccumulatedQ2"
         elsif q3
           "AccumulatedQ3"
-        # else
-        #   "1"
         end
       end
 
-      # def self.find_data(doc, xbrl, context)
       def self.find_data(doc, xbrl, context, id)
         # 売上高
-        xbrl.net_sales = find_value_tse_t_ed(doc, NET_SALES, context[:context_duration])
+        xbrl.net_sales = find_value_jp_cor(doc, NET_SALES, context[:context_duration])
         # 営業利益
-        xbrl.operating_income = find_value_tse_t_ed(doc, OPERATING_INCOME, context[:context_duration])
+        xbrl.operating_income = find_value_jp_cor(doc, OPERATING_INCOME, context[:context_duration])
         # 経常利益
-        xbrl.ordinary_income = find_value_tse_t_ed(doc, ORDINARY_INCOME, context[:context_duration])
+        xbrl.ordinary_income = find_value_jp_cor(doc, ORDINARY_INCOME, context[:context_duration])
         # 純利益
-        xbrl.net_income = find_value_tse_t_ed(doc, NET_INCOME, context[:context_duration])
+        xbrl.net_income = find_value_jp_cor(doc, NET_INCOME, context[:context_duration])
         # 1株当たり純利益
         xbrl.net_income_per_share = find_value_to_f(doc, NET_INCOME_PER_SHARE, context[:context_duration])
 
@@ -176,61 +157,49 @@ module LiteXBRL
         xbrl.change_in_forecast_net_income = find_value_to_f(doc, CHANGE_FORECAST_NET_INCOME, context[:context_forecast].call(xbrl.quarter))
 
         # 報告書のタイプ
-        xbrl.document_title_cover_page = find_value_tse_t_ed(doc, DOCUMENT_TITLE_COVER_PAGE, context[:filing_date_instant])
+        xbrl.document_title_cover_page = find_value_jp_cor(doc, DOCUMENT_TITLE_COVER_PAGE, context[:filing_date_instant])
 
         # 決算期
-        xbrl.fiscal_year_cover_page = find_value_tse_t_ed(doc, FISCAL_YEAR_COVER_PAGE, context[:filing_date_instant])
+        xbrl.fiscal_year_cover_page = find_value_jp_cor(doc, FISCAL_YEAR_COVER_PAGE, context[:filing_date_instant])
 
         # 決算月
-        xbrl.current_fiscal_year_end_date = find_value_tse_t_ed(doc, CURRENT_FISCAL_YEAR_END_DATE, context[:filing_date_instant])
+        xbrl.current_fiscal_year_end_date = find_value_jp_cor(doc, CURRENT_FISCAL_YEAR_END_DATE, context[:filing_date_instant])
 
         # 企業名
-        xbrl.company_name = find_value_tse_t_ed(doc, COMPANY_NAME, context[:filing_date_instant])
+        xbrl.company_name = find_value_jp_cor(doc, COMPANY_NAME, context[:filing_date_instant])
 
         # 提出日
-        xbrl.filing_date = find_value_tse_t_ed(doc, FILING_DATE, context[:filing_date_instant])
+        xbrl.filing_date = find_value_jp_cor(doc, FILING_DATE, context[:filing_date_instant])
 
         # 従業員数
-        xbrl.number_of_employees = find_value_tse_t_ed(doc, NUMBER_OF_EMPLOYEES, context[:context_instant])
+        xbrl.number_of_employees = find_value_jp_cor(doc, NUMBER_OF_EMPLOYEES, context[:context_instant])
 
         # セグメント情報
         elm_array = find_value_reportable_segments_member(doc, id[:reportable_segments_member])
 
-        # elm_array.each do |elm|
-        #   puts "elm.content : #{elm.content}"
-        # end
-        # segments = Array.new()
         xbrl.segments = Array.new()
         elm_array.each do |elm|
           segment = segment_hash
           segment[:segment_context_ref_name] = to_segment_context_ref_name(elm.content, context[:context_duration])
           segment[:segment_english_name] = to_segment_english_name(elm)
-          segment[:segment_sales] = find_value_tse_t_ed(doc, NET_SALES, segment[:segment_context_ref_name])
-          segment[:segment_operating_profit] = find_value_tse_t_ed(doc, OPERATING_INCOME, segment[:segment_context_ref_name])
+          segment[:segment_sales] = find_value_jp_cor(doc, NET_SALES, segment[:segment_context_ref_name])
+          segment[:segment_operating_profit] = find_value_jp_cor(doc, OPERATING_INCOME, segment[:segment_context_ref_name])
           xbrl.segments.push segment
         end
-
-        # xbrl.segments = Array.new()
-        # hoge1 = {'hoge1' => 'hogege1'}
-        # hoge2 = {'hoge2' => 'hogege2'}
-        # hoge3 = {'hoge3' => 'hogege3'}
-        # xbrl.segments.push hoge1
-        # xbrl.segments.push hoge2
-        # xbrl.segments.push hoge3
 
         xbrl
       end
 
       def self.find_value_to_mill(doc, item, context)
-        to_mill find_value_tse_t_ed(doc, item, context)
+        to_mill find_value_jp_cor(doc, item, context)
       end
 
       def self.find_value_to_i(doc, item, context)
-        to_i find_value_tse_t_ed(doc, item, context)
+        to_i find_value_jp_cor(doc, item, context)
       end
 
       def self.find_value_to_f(doc, item, context)
-        to_f find_value_tse_t_ed(doc, item, context)
+        to_f find_value_jp_cor(doc, item, context)
       end
 
     end

@@ -36,7 +36,6 @@ module LiteXBRL
         def context_hash(consolidation, season)
           raise StandardError.new("通期・四半期が設定されていません。") unless season
 
-          puts year_duration = season == "Quarter" ? "YTDDuration_#{consolidation}" : "#{season}Duration_#{consolidation}"
           {
             context_duration: "Current#{year_duration}",
             context_prior_duration: "Prior#{year_duration}",
@@ -51,7 +50,6 @@ module LiteXBRL
         #
         def id_hash(consolidation, season)
           raise StandardError.new("idが設定されていません。") unless season
-          puts year_duration = season == "Quarter" ? "YTDDuration_#{consolidation}" : "#{season}Duration_#{consolidation}"
           {
             reportable_segments_member: "[starts-with(@id,'Current#{year_duration}_') and not(substring-after(@id, 'ReportableSegmentsMember'))]"
           }
@@ -129,7 +127,7 @@ module LiteXBRL
         #
         # 有価証券報告書の勘定科目の値を取得します
         #
-        def find_value_tse_t_ed(doc, item, context)
+        def find_value_jp_cor(doc, item, context)
 
           find_value(doc, item, context) do |item, context|
             "//xbrli:xbrl/jpcrp_cor:#{item}[@contextRef='#{context}'] | //xbrli:xbrl/jppfs_cor:#{item}[@contextRef='#{context}'] | //xbrli:xbrl/jpdei_cor:#{item}[@contextRef='#{context}']"
@@ -157,8 +155,6 @@ module LiteXBRL
           end
         end
 
-
-
         #
         # segmentを設定します
         #
@@ -171,7 +167,6 @@ module LiteXBRL
           segment_operating_profit: segment_operating_profit
         }
         end
-
 
         #
         # 有価証券報告書の報告セグメントの値を取得します
@@ -190,19 +185,6 @@ module LiteXBRL
           xpath = yield(id)
           elm_array = Array.new()
           elm_array = doc.xpath xpath
-
-          # segments = Array.new()
-          # elm_array.each do |elm|
-          #   segment = segment_hash
-          #   segment[:segment_context_ref_name] = to_segment_context_ref_name(elm.content, context)
-          #   segment[:segment_english_name] = to_segment_english_name(elm)
-          #   segment[:segment_sales] = find_value_tse_t_ed(doc, NET_SALES, segment[:segment_context_ref_name])
-          #   segment[:segment_operating_profit] = find_value_tse_t_ed(doc, OPERATING_INCOME, segment[:segment_context_ref_name])
-          #   # puts segment
-          #   segments.push segment
-          # end
-          # puts segments
-          # segments
           elm_array
         end
       end

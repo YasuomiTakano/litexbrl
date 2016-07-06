@@ -21,12 +21,10 @@ module LiteXBRL
       OPERATING_INCOME = [['OperatingIncome', 'OperatingIncomeIFRSSummaryOfBusinessResults', 'GrossProfi']]
 
       # 経常利益
-      ORDINARY_INCOME = ['OrdinaryIncome', 'IncomeBeforeIncomeTaxesUS', 'IncomeFromContinuingOperationsBeforeIncomeTaxesUS',
-          'ProfitBeforeTaxIFRS', 'ProfitBeforeIncomeTaxIFRS']
+      ORDINARY_INCOME = ['OrdinaryIncome', 'OrdinaryIncomeLossSummaryOfBusinessResults']
 
       # 純利益
-      NET_INCOME = ['NetIncome', 'ProfitAttributableToOwnersOfParent', 'NetIncomeUS',
-        'IncomeBeforeMinorityInterestUS', 'ProfitAttributableToOwnersOfParentIFRS']
+      NET_INCOME = ['NetIncome', 'NetIncomeLossSummaryOfBusinessResults']
 
       # 一株当たり純利益
       NET_INCOME_PER_SHARE = ['NetIncomePerShare', 'NetIncomePerShareUS', 'BasicNetIncomePerShareUS',
