@@ -116,7 +116,7 @@ module LiteXBRL
       DOCUMENT_TITLE_COVER_PAGE = ['DocumentTitleCoverPage']
 
       # 決算期
-      FISCAL_YEAR_COVER_PAGE = ['FiscalYearCoverPage']
+      FISCAL_YEAR_COVER_PAGE = ['FiscalYearCoverPage','QuarterlyAccountingPeriodCoverPage']
 
       # 決算月
       CURRENT_FISCAL_YEAR_END_DATE = ['CurrentFiscalYearEndDateDEI']
