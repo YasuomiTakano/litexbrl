@@ -36,9 +36,10 @@ module LiteXBRL
         def context_hash(consolidation, season)
           raise StandardError.new("通期・四半期が設定されていません。") unless season
 
-          year_duration = season == "Quarter" ? "YTDDuration_#{consolidation}" : "#{season}Duration_#{consolidation}"
+          year_duration = season == "Quarter" ? "YTDDuration" : "#{season}Duration"
           {
             context_duration: "Current#{year_duration}",
+            context_consolidation: "#{consolidation}",
             context_prior_duration: "Prior#{year_duration}",
             context_instant: "Current#{season}Instant",
             context_instant_consolidation: "Current#{season}Instant_#{consolidation}",
@@ -130,10 +131,10 @@ module LiteXBRL
         #
         # 有価証券報告書の勘定科目の値を取得します
         #
-        def find_value_jp_cor(doc, item, context)
+        def find_value_jp_cor(doc, item, context, context_consolidation)
 
           find_value(doc, item, context) do |item, context|
-            "//xbrli:xbrl/jpcrp_cor:#{item}[@contextRef='#{context}'] | //xbrli:xbrl/jppfs_cor:#{item}[@contextRef='#{context}'] | //xbrli:xbrl/jpdei_cor:#{item}[@contextRef='#{context}']"
+            "//xbrli:xbrl/jpcrp_cor:#{item}[@contextRef='#{context}' or @contextRef='#{context}_#{context_consolidation}'] | //xbrli:xbrl/jppfs_cor:#{item}[@contextRef='#{context}' or @contextRef='#{context}_#{context_consolidation}'] | //xbrli:xbrl/jpdei_cor:#{item}[@contextRef='#{context}' or @contextRef='#{context}_#{context_consolidation}']"
           end
         end
 
