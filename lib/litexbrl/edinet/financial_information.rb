@@ -21,9 +21,6 @@ module LiteXBRL
           cons = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYearDuration' or @id='CurrentYTDDuration']/xbrli:entity/xbrli:identifier")
           non_cons = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYearDuration_NonConsolidatedMember' or @id='CurrentYTDDuration_NonConsolidatedMember']/xbrli:entity/xbrli:identifier")
 
-          puts "cons : #{cons}"
-          puts "non_cons : #{non_cons}"
-
           if cons
             "Consolidated"
           elsif non_cons
@@ -37,7 +34,6 @@ module LiteXBRL
         # contextを設定します
         #
         def context_hash(consolidation, season)
-          puts "season2 : #{season}"
           raise StandardError.new("通期・四半期が設定されていません。") unless season
 
           year_duration = season == "Quarter" ? "YTDDuration_#{consolidation}" : "#{season}Duration_#{consolidation}"
@@ -90,12 +86,8 @@ module LiteXBRL
         # 四半期を取得します
         #
         def find_quarter(doc, consolidation, context)
-          # puts "//xbrli:xbrl/xbrli:context[@id='CurrentYearDuration_#{consolidation}' or @id='CurrentYTDDuration_#{consolidation}']/xbrli:period/xbrli:endDate"
           elm_end = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYearDuration_#{consolidation}' or @id='CurrentYTDDuration_#{consolidation}' or @id='CurrentYearDuration' or @id='CurrentYTDDuration']/xbrli:period/xbrli:endDate")
-          # puts "//xbrli:xbrl/xbrli:context[@id='#{context[:context_instant]}']/xbrli:period/xbrli:instant"
           elm_instant = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='#{context[:context_instant_consolidation]}' or @id='#{context[:context_instant]}']/xbrli:period/xbrli:instant")
-          puts "elm_end : #{elm_end}"
-          puts "elm_instant : #{elm_instant}"
           to_quarter(elm_end, elm_instant)
         end
 

@@ -19,8 +19,6 @@ module LiteXBRL
 
       def self.find_base_data(doc)
         consolidation, season = find_consolidation_and_season(doc)
-        puts "consolidation : #{consolidation}"
-        puts "season1 : #{season}"
         # binding.pry
         context = context_hash(consolidation, season)
         id = id_hash(consolidation, season)
@@ -34,8 +32,6 @@ module LiteXBRL
         # 決算月
         xbrl.month = find_month(doc, consolidation)
         # 四半期
-        puts "consolidation : #{consolidation}"
-        puts "context : #{context}"
         xbrl.quarter = find_quarter(doc, consolidation, context)
         # 連結・非連結
         xbrl.consolidation = to_consolidation(consolidation)
@@ -66,12 +62,6 @@ module LiteXBRL
         q1 = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='Prior1QuarterInstant_#{consolidation}' or @id='Prior1QuarterInstant']/xbrli:entity/xbrli:identifier")
         q2 = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='Prior2QuarterInstant_#{consolidation}' or @id='Prior2QuarterInstant']/xbrli:entity/xbrli:identifier")
         q3 = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='Prior3QuarterInstant_#{consolidation}' or @id='Prior3QuarterInstant']/xbrli:entity/xbrli:identifier")
-        # puts "year : #{year}"
-        # puts "quarter : #{quarter}"
-        # puts "q1 : #{q1}"
-        # puts "q2 : #{q2}"
-        # puts "q3 : #{q3}"
-
 
         if year
           "Year"
