@@ -77,7 +77,6 @@ module LiteXBRL
       end
 
       def self.find_data(doc, xbrl, context, id)
-        puts "context[:context_duration] : #{context[:context_duration]}"
         # 売上高
         xbrl.net_sales = find_value_jp_cor(doc, NET_SALES, context[:context_duration], context[:context_consolidation])
         # 営業利益
