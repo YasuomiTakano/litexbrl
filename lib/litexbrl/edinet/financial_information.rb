@@ -53,8 +53,9 @@ module LiteXBRL
         #
         def id_hash(consolidation, season)
           raise StandardError.new("idが設定されていません。") unless season
-          year_duration = season == "Quarter" ? "YTDDuration_#{consolidation}" : "#{season}Duration_#{consolidation}"
+          year_duration = season == "Quarter" ? "YTDDuration" : "#{season}Duration"
           {
+            # context_duration: "Current#{year_duration}",
             reportable_segments_member: "[starts-with(@id,'Current#{year_duration}_') and not(substring-after(@id, 'ReportableSegmentsMember'))]"
           }
         end
@@ -176,7 +177,7 @@ module LiteXBRL
         # 有価証券報告書の報告セグメントの値を取得します
         #
         def find_value_reportable_segments_member(doc, id)
-
+          puts "id : #{id}"
           find_value_specified_id(doc, id) do |id|
             "//xbrli:xbrl/xbrli:context#{id}/xbrli:scenario/xbrldi:explicitMember[@dimension='jpcrp_cor:OperatingSegmentsAxis']"
           end
