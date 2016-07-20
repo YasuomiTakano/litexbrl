@@ -55,7 +55,7 @@ module LiteXBRL
           raise StandardError.new("idが設定されていません。") unless season
           year_duration = season == "Quarter" ? "YTDDuration" : "#{season}Duration"
           {
-            reportable_segments_member: "[starts-with(@id,'Current#{year_duration}_') and not(substring-after(@id, 'ReportableSegmentsMember')) and (contains(@id, 'asr') or contains(@id, 'q1r') or contains(@id, 'q2r') or contains(@id, 'q3r'))]"
+            reportable_segments_member: "[starts-with(@id,'Current#{year_duration}_') and not(substring-after(@id, 'ReportableSegmentsMember')) and (contains(@id, '-asr_') or contains(@id, '-q1r_') or contains(@id, '-q2r_') or contains(@id, '-q3r_'))]"
           }
         end
 

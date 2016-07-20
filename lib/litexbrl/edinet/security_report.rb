@@ -176,18 +176,23 @@ module LiteXBRL
         xbrl.number_of_employees = find_value_jp_cor(doc, NUMBER_OF_EMPLOYEES, context[:context_instant], context[:context_consolidation])
 
         # セグメント情報
-        elm_array = find_value_reportable_segments_member(doc, id[:reportable_segments_member])
-
         xbrl.segments = Array.new()
-        elm_array.each do |elm|
-          segment = segment_hash
-          #segment[:segment_context_ref_name] = to_segment_context_ref_name(elm.content, context[:context_duration])
-          segment[:segment_context_ref_name] = elm.content.delete(":")
-          segment[:segment_english_name] = to_segment_english_name(elm)
-          segment[:segment_sales] = find_value_jp_cor_segment(doc, NET_SALES, segment[:segment_context_ref_name], context[:context_duration], context[:context_consolidation])
-          segment[:segment_operating_profit] = find_value_jp_cor_segment(doc, OPERATING_INCOME, segment[:segment_context_ref_name], context[:context_duration], context[:context_consolidation])
-          xbrl.segments.push segment
+        puts (doc.xpath "/xbrli:xbrl/jpcrp_cor:DescriptionOfFactThatCompanysBusinessComprisesSingleSegment").blank?
+        if (doc.xpath "/xbrli:xbrl/jpcrp_cor:DescriptionOfFactThatCompanysBusinessComprisesSingleSegment").blank?
+
+          elm_array = find_value_reportable_segments_member(doc, id[:reportable_segments_member])
+
+          elm_array.each do |elm|
+            segment = segment_hash
+            #segment[:segment_context_ref_name] = to_segment_context_ref_name(elm.content, context[:context_duration])
+            segment[:segment_context_ref_name] = elm.content.delete(":")
+            segment[:segment_english_name] = to_segment_english_name(elm)
+            segment[:segment_sales] = find_value_jp_cor_segment(doc, NET_SALES, segment[:segment_context_ref_name], context[:context_duration], context[:context_consolidation])
+            segment[:segment_operating_profit] = find_value_jp_cor_segment(doc, OPERATING_INCOME, segment[:segment_context_ref_name], context[:context_duration], context[:context_consolidation])
+            xbrl.segments.push segment
+          end
         end
+
 
         xbrl
       end
