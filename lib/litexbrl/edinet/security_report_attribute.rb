@@ -9,7 +9,7 @@ module LiteXBRL
         :change_in_prior_net_sales, :change_in_prior_operating_income, :change_in_prior_ordinary_income, :change_in_prior_net_income,
         :forecast_net_sales, :forecast_operating_income, :forecast_ordinary_income, :forecast_net_income, :forecast_net_income_per_share,
         :change_in_forecast_net_sales, :change_in_forecast_operating_income, :change_in_forecast_ordinary_income, :change_in_forecast_net_income,
-        :owners_equity, :number_of_shares, :number_of_treasury_stock, :net_assets_per_share, :document_title_cover_page, :fiscal_year_cover_page, :current_fiscal_year_end_date, :company_name, :filing_date, :number_of_employees, :segments, :segment_context_ref_name, :segment_english_name, :segment_sales, :egment_operating_profit
+        :owners_equity, :number_of_shares, :number_of_treasury_stock, :net_assets_per_share, :document_title_cover_page, :fiscal_year_cover_page, :current_fiscal_year_end_date, :company_name, :filing_date, :start_date, :end_date, :number_of_employees, :segments, :segment_context_ref_name, :segment_english_name, :segment_sales, :egment_operating_profit
 
       def attributes
         {
@@ -45,6 +45,8 @@ module LiteXBRL
           current_fiscal_year_end_date: current_fiscal_year_end_date,
           company_name: company_name,
           filing_date: filing_date,
+          start_date: start_date,
+          end_date: end_date,
           number_of_employees: number_of_employees,
           segments: segments
         }

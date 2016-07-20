@@ -127,6 +127,12 @@ module LiteXBRL
       # 提出日
       FILING_DATE = ['FilingDateCoverPage']
 
+      # 期間開始
+      START_DATE = ['CurrentFiscalYearStartDateDEI']
+
+      # 期間終了
+      FILING_DATE = ['CurrentPeriodEndDateDEI']
+
       # 従業員数
       NUMBER_OF_EMPLOYEES = ['NumberOfEmployees']
 

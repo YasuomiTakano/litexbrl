@@ -172,6 +172,10 @@ module LiteXBRL
         # 提出日
         xbrl.filing_date = find_value_jp_cor(doc, FILING_DATE, context[:filing_date_instant], context[:context_consolidation])
 
+        xbrl.start_date = find_value_jp_cor(doc, START_DATE, context[:filing_date_instant], context[:context_consolidation])
+
+        xbrl.end_date = find_value_jp_cor(doc, FILING_DATE, context[:filing_date_instant], context[:context_consolidation])
+
         # 従業員数
         xbrl.number_of_employees = find_value_jp_cor(doc, NUMBER_OF_EMPLOYEES, context[:context_instant], context[:context_consolidation])
 
@@ -189,6 +193,7 @@ module LiteXBRL
             xbrl.segments.push segment
           end
         end
+
 
 
         xbrl
