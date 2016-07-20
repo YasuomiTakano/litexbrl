@@ -178,10 +178,9 @@ module LiteXBRL
         # セグメント情報
         xbrl.segments = Array.new()
         single_segment = doc.xpath "/xbrli:xbrl/jpcrp_cor:DescriptionOfFactThatCompanysBusinessComprisesSingleSegment"
-        unless single_segment.empty?
-
+        puts "single_segment : #{single_segment}"
+        if single_segment.empty?
           elm_array = find_value_reportable_segments_member(doc, id[:reportable_segments_member])
-
           elm_array.each do |elm|
             segment = segment_hash
             #segment[:segment_context_ref_name] = to_segment_context_ref_name(elm.content, context[:context_duration])
