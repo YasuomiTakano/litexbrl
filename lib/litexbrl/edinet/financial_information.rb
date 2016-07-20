@@ -141,7 +141,7 @@ module LiteXBRL
         def find_value_jp_cor_segment(doc, item, context_ref_name, context, context_consolidation)
 
           find_value(doc, item, context) do |item, context|
-            "//xbrli:xbrl/jpcrp_cor:#{item}[starts-with(@contextRef,'#{context}_') and not(substring-after(@contextRef, '#{context_ref_name}'))] | //xbrli:xbrl/jppfs_cor:#{item}[starts-with(@contextRef,'#{context}_') and not(substring-after(@contextRef, '#{context_ref_name}'))] | //xbrli:xbrl/jpdei_cor:#{item}[starts-with(@contextRef,'#{context}_') and not(substring-after(@contextRef, '#{context_ref_name}'))]"
+            "//xbrli:xbrl/jpcrp_cor:#{item}[starts-with(@contextRef,'#{context}_') and contains(@contextRef, '#{context_ref_name}')] | //xbrli:xbrl/jppfs_cor:#{item}[starts-with(@contextRef,'#{context}_') and contains(@contextRef, '#{context_ref_name}')] | //xbrli:xbrl/jpdei_cor:#{item}[starts-with(@contextRef,'#{context}_') and contains(@contextRef, '#{context_ref_name}')]"
           end
         end
 
