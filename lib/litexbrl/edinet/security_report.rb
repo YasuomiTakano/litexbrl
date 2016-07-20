@@ -177,8 +177,8 @@ module LiteXBRL
 
         # セグメント情報
         xbrl.segments = Array.new()
-        puts (doc.xpath "/xbrli:xbrl/jpcrp_cor:DescriptionOfFactThatCompanysBusinessComprisesSingleSegment").blank?
-        if (doc.xpath "/xbrli:xbrl/jpcrp_cor:DescriptionOfFactThatCompanysBusinessComprisesSingleSegment").blank?
+        single_segment = doc.xpath "/xbrli:xbrl/jpcrp_cor:DescriptionOfFactThatCompanysBusinessComprisesSingleSegment"
+        unless single_segment.empty?
 
           elm_array = find_value_reportable_segments_member(doc, id[:reportable_segments_member])
 
