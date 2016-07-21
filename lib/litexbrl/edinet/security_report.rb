@@ -163,18 +163,27 @@ module LiteXBRL
         # 決算期
         xbrl.fiscal_year_cover_page = find_value_jp_cor(doc, FISCAL_YEAR_COVER_PAGE, context[:filing_date_instant], context[:context_consolidation])
 
-        # 決算月
-        xbrl.current_fiscal_year_end_date = find_value_jp_cor(doc, CURRENT_FISCAL_YEAR_END_DATE, context[:filing_date_instant], context[:context_consolidation])
-
         # 企業名
         xbrl.company_name = find_value_jp_cor(doc, COMPANY_NAME, context[:filing_date_instant], context[:context_consolidation])
 
         # 提出日
         xbrl.filing_date = find_value_jp_cor(doc, FILING_DATE, context[:filing_date_instant], context[:context_consolidation])
 
-        xbrl.start_date = find_value_jp_cor(doc, START_DATE, context[:filing_date_instant], context[:context_consolidation])
 
-        xbrl.end_date = find_value_jp_cor(doc, FILING_DATE, context[:filing_date_instant], context[:context_consolidation])
+        # 当事業年度開始日
+        xbrl.current_fiscal_year_start_date = find_value_jp_cor(doc, CURRENT_FISCAL_YEAR_START_DATE, context[:filing_date_instant], context[:context_consolidation])
+
+        # 当事業年度終了日
+        xbrl.current_fiscal_year_end_date = find_value_jp_cor(doc, CURRENT_FISCAL_YEAR_END_DATE, context[:filing_date_instant], context[:context_consolidation])
+
+        # 当会計期間終了日
+        xbrl.current_period_end_date = find_value_jp_cor(doc, CURRENT_PERIOD_END_DATE, context[:filing_date_instant], context[:context_consolidation])
+
+        # 当会計期間開始日
+        xbrl.current_period_start_date = find_value_jp_cor(doc, CURRENT_PERIOD_START_DATE, context[:filing_date_instant], context[:context_consolidation])
+
+        # 当会計期間の種類
+        xbrl.type_of_current_period = find_value_jp_cor(doc, TYPE_OF_CURRENT_PERIOD, context[:filing_date_instant], context[:context_consolidation])
 
         # 従業員数
         xbrl.number_of_employees = find_value_jp_cor(doc, NUMBER_OF_EMPLOYEES, context[:context_instant], context[:context_consolidation])

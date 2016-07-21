@@ -127,11 +127,20 @@ module LiteXBRL
       # 提出日
       FILING_DATE = ['FilingDateCoverPage']
 
-      # 期間開始
-      START_DATE = ['CurrentFiscalYearStartDateDEI']
+      # 当事業年度開始日
+      CURRENT_FISCAL_YEAR_START_DATE = ['CurrentFiscalYearStartDateDEI']
 
-      # 期間終了
-      FILING_DATE = ['CurrentPeriodEndDateDEI']
+      # 当事業年度終了日
+      CURRENT_FISCAL_YEAR_END_DATE = ['CurrentFiscalYearEndDateDEI']
+
+      # 当会計期間終了日
+      CURRENT_PERIOD_START_DATE = ['CurrentPeriodStartDateDEI']
+
+      # 当会計期間終了日
+      CURRENT_PERIOD_END_DATE = ['CurrentPeriodEndDateDEI']
+
+      # 当会計期間の種類
+      TYPE_OF_CURRENT_PERIOD = ['TypeOfCurrentPeriodDEI']
 
       # 従業員数
       NUMBER_OF_EMPLOYEES = ['NumberOfEmployees']
