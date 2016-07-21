@@ -43,6 +43,7 @@ module LiteXBRL
           document_title_cover_page: document_title_cover_page,
           fiscal_year_cover_page: fiscal_year_cover_page,
           company_name: company_name,
+          filing_date: filing_date,
           current_fiscal_year_start_date: current_fiscal_year_start_date,
           current_fiscal_year_end_date: current_fiscal_year_end_date,
           current_period_start_date: current_period_start_date,

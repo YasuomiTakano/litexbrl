@@ -133,7 +133,7 @@ module LiteXBRL
       # 当事業年度終了日
       CURRENT_FISCAL_YEAR_END_DATE = ['CurrentFiscalYearEndDateDEI']
 
-      # 当会計期間終了日
+      # 当会計期間開始日
       CURRENT_PERIOD_START_DATE = ['CurrentPeriodStartDateDEI']
 
       # 当会計期間終了日
