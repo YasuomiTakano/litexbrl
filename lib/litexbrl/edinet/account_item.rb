@@ -118,9 +118,6 @@ module LiteXBRL
       # 決算期
       FISCAL_YEAR_COVER_PAGE = ['FiscalYearCoverPage','QuarterlyAccountingPeriodCoverPage']
 
-      # 決算月
-      CURRENT_FISCAL_YEAR_END_DATE = ['CurrentFiscalYearEndDateDEI']
-
       # 企業名
       COMPANY_NAME = ['CompanyNameCoverPage']
 
