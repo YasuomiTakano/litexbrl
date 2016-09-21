@@ -3,7 +3,7 @@ module LiteXBRL
 
     SECURITIES_CODE = /([\d|０-９]{4})/
     CONSOLIDATED = "Consolidated"
-    NON_CONSOLIDATED = "NonConsolidated"
+    NON_CONSOLIDATED = "NonConsolidatedMember"
 
     def hash_with_default(default, hash)
       hash.default = default
@@ -74,5 +74,13 @@ module LiteXBRL
       !!(val && val != "")
     end
 
+    def to_segment_context_ref_name(elm, context)
+      context + "_" + elm.delete(":")
+    end
+
+    def to_segment_english_name(elm)
+      /:/ =~ elm
+      $'.gsub!(/ReportableSegmentsMember/,'')
+    end
   end
 end
