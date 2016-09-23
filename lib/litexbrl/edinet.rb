@@ -34,12 +34,6 @@ module LiteXBRL
         # TODO 委嬢する？
         if security_report? namespaces
           SecurityReport
-        # elsif summary2? namespaces
-        #   Summary2
-        # elsif results_forecast? namespaces
-        #   ResultsForecast
-        # elsif results_forecast2? namespaces
-        #   ResultsForecast2
         else
           raise StandardError.new "ドキュメントがありません"
         end
@@ -48,19 +42,6 @@ module LiteXBRL
       def security_report?(namespaces)
         namespaces.keys.any? {|ns| /jpcrp.+(asr|q1r|q2r|q3r|q4r)/ =~ ns }
       end
-
-      # def summary2?(namespaces)
-      #   namespaces.keys.any? {|ns| /tse-.+(jpsm|ussm|ifsm)/ =~ ns }
-      # end
-
-      # def results_forecast?(namespaces)
-      #   namespaces.keys.any? {|ns| /edinet-rvfc/ =~ ns }
-      # end
-
-      # def results_forecast2?(namespaces)
-      #   namespaces.keys.any? {|ns| /tse-rvfc/ =~ ns }
-      # end
-
     end
 
   end

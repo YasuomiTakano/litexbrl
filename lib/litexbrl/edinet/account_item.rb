@@ -15,7 +15,7 @@ module LiteXBRL
       end
 
       # 売上高
-      NET_SALES = ['NetSales', 'NetSalesSummaryOfBusinessResults', 'RevenueIFRSSummaryOfBusinessResults ']
+      NET_SALES = ['NetSales', 'NetSalesSummaryOfBusinessResults', 'RevenueIFRSSummaryOfBusinessResults']
 
       # 営業利益
       OPERATING_INCOME = [['OperatingIncome', 'OperatingIncomeIFRSSummaryOfBusinessResults', 'GrossProfi']]
