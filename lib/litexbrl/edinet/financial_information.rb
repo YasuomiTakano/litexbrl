@@ -60,6 +60,17 @@ module LiteXBRL
         end
 
         #
+        # ネームスペースを取得します
+        #
+        def find_namespaces(doc)
+          namespaces = []
+          doc.namespaces.each_key do |key|
+            namespaces.push key.split(":")[1]
+          end
+          namespaces
+        end
+
+        #
         # 証券コードを取得します
         #
         def find_securities_code(doc, consolidation)
@@ -167,6 +178,59 @@ module LiteXBRL
         end
 
         #
+        # 有価証券報告書の勘定科目の値を取得します
+        #
+        def find_value_jp_cor(doc, item, context, context_consolidation)
+          namespaces = find_namespaces doc
+          context_array = ["#{context}", "#{context}_Consolidated", "#{context}_NonConsolidatedMember"]
+          namespaces_array = ['jpcrp_cor', 'jppfs_cor', 'jpdei_cor']
+          xpath_array = []
+
+          namespaces_array.each do |ns|
+            if namespaces.include?(ns)
+              item.each do |i|
+                context_array.each do |c|
+                  xpath_array.push("//xbrli:xbrl/#{ns}:#{i}[@contextRef='#{c}']")
+                end
+              end
+            end
+          end
+          find_value(xpath_array, doc)
+        end
+
+        def find_value_jp_cor_segment(doc, item, context_ref_name, context, context_consolidation)
+          namespaces = find_namespaces doc
+          context_array = ["#{context}", "#{context}_Consolidated", "#{context}_NonConsolidatedMember"]
+          namespaces_array = ['jpcrp_cor', 'jppfs_cor', 'jpdei_cor']
+          xpath_array = []
+
+          namespaces_array.each do |ns|
+            if namespaces.include?(ns)
+              item.each do |i|
+                context_array.each do |c|
+                  xpath_array.push("//xbrli:xbrl/#{ns}:#{i}[starts-with(@contextRef,'#{c}_') and contains(@contextRef, '#{context_ref_name}')]")
+                end
+              end
+            end
+          end
+          find_value(xpath_array, doc)
+        end
+
+        #
+        # 勘定科目の値を取得します
+        #
+        def find_value(xpath_array, doc)
+          content = ""
+          xpath_array.each do |x|
+            elm = doc.at_xpath x
+            unless elm.nil?
+              content = elm.content
+              break if content.nil?
+            end
+          end
+          content
+        end
+        #
         # segmentを設定します
         #
         attr_accessor :segment_context_ref_name, :segment_english_name, :segment_sales, :segment_operating_profit
@@ -186,6 +250,24 @@ module LiteXBRL
           find_value_specified_id(doc, id) do |id|
             "//xbrli:xbrl/xbrli:context#{id}/xbrli:scenario/xbrldi:explicitMember[@dimension='jpcrp_cor:OperatingSegmentsAxis']"
           end
+        end
+
+        #
+        # 有価証券報告書の報告セグメントの値を取得します
+        #
+        def find_value_reportable_segments_member(doc, id)
+          namespaces = find_namespaces doc
+          namespaces_array = ['xbrldi']
+          elm_array = []
+
+          namespaces_array.each do |ns|
+            if namespaces.include?(ns)
+              elm_array = find_value_specified_id(doc, id) do |id|
+                "//xbrli:xbrl/xbrli:context#{id}/xbrli:scenario/#{ns}:explicitMember[@dimension='jpcrp_cor:OperatingSegmentsAxis']"
+              end
+            end
+          end
+          elm_array
         end
 
         #
