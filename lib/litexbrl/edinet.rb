@@ -29,18 +29,7 @@ module LiteXBRL
       end
 
       def find_document(doc)
-        namespaces = doc.namespaces
-
-        # TODO 委嬢する？
-        if security_report? namespaces
-          SecurityReport
-        else
-          raise StandardError.new "ドキュメントがありません"
-        end
-      end
-
-      def security_report?(namespaces)
-        namespaces.keys.any? {|ns| /jpcrp.+(asr|q1r|q2r|q3r|q4r)/ =~ ns }
+        SecurityReport
       end
     end
 
