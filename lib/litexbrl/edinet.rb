@@ -23,13 +23,7 @@ module LiteXBRL
       private
 
       def read(doc)
-        document = find_document doc
-
-        document.read doc
-      end
-
-      def find_document(doc)
-        SecurityReport
+        SecurityReport.read doc
       end
     end
 
