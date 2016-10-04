@@ -157,27 +157,6 @@ module LiteXBRL
         end
 
         #
-        # 勘定科目の値を取得します
-        #
-        def find_value(doc, item, context)
-          # 配列の場合、いずれかに該当するもの
-          if item[0].is_a? String
-            xpath = item.map {|item| yield(item, context) }.join('|')
-            elm = doc.at_xpath xpath
-            elm.content if elm
-          # 2次元配列の場合、先頭の配列から優先に
-          elsif item[0].is_a? Array
-            item.each do |item|
-              xpath = item.map {|item| yield(item, context) }.join('|')
-              elm = doc.at_xpath xpath
-              return elm.content if elm
-            end
-
-            nil # 該当なし
-          end
-        end
-
-        #
         # 有価証券報告書の勘定科目の値を取得します
         #
         def find_value_jp_cor(doc, item, context, context_consolidation)
