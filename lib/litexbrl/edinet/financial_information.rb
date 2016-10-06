@@ -224,18 +224,13 @@ module LiteXBRL
         # 有価証券報告書の報告セグメントの値を取得します
         #
         def find_value_reportable_segments_member(doc, id)
-          namespaces = find_namespaces doc
           namespaces_array = ['xbrldi']
-          elm_array = []
 
-          namespaces_array.each do |ns|
-            if namespaces.include?(ns)
-              elm_array = find_value_specified_id(doc, id) do |id|
-                "//xbrli:xbrl/xbrli:context#{id}/xbrli:scenario/#{ns}:explicitMember[@dimension='jpcrp_cor:OperatingSegmentsAxis']"
-              end
+          (find_namespaces(doc) & namespaces_array).map do |ns|
+            find_value_specified_id(doc, id) do |id|
+              "//xbrli:xbrl/xbrli:context#{id}/xbrli:scenario/#{ns}:explicitMember[@dimension='jpcrp_cor:OperatingSegmentsAxis']"
             end
-          end
-          elm_array
+          end.flatten
         end
 
         #
