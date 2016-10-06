@@ -157,38 +157,30 @@ module LiteXBRL
         # 有価証券報告書の勘定科目の値を取得します
         #
         def find_value_jp_cor(doc, item, context, context_consolidation)
-          namespaces = find_namespaces doc
           context_array = ["#{context}", "#{context}_Consolidated", "#{context}_NonConsolidatedMember"]
           namespaces_array = ['jpcrp_cor', 'jppfs_cor', 'jpdei_cor']
-          xpath_array = []
 
-          namespaces_array.each do |ns|
-            if namespaces.include?(ns)
-              item.each do |i|
-                context_array.each do |c|
-                  xpath_array.push("//xbrli:xbrl/#{ns}:#{i}[@contextRef='#{c}']")
-                end
+          xpath_array = (find_namespaces(doc) & namespaces_array).map do |ns|
+            item.map do |i|
+              context_array.map do |c|
+                "//xbrli:xbrl/#{ns}:#{i}[@contextRef='#{c}']"
               end
             end
-          end
+          end.flatten
           find_value(xpath_array, doc)
         end
 
         def find_value_jp_cor_segment(doc, item, context_ref_name, context, context_consolidation)
-          namespaces = find_namespaces doc
           context_array = ["#{context}", "#{context}_Consolidated", "#{context}_NonConsolidatedMember"]
           namespaces_array = ['jpcrp_cor', 'jppfs_cor', 'jpdei_cor']
-          xpath_array = []
 
-          namespaces_array.each do |ns|
-            if namespaces.include?(ns)
-              item.each do |i|
-                context_array.each do |c|
-                  xpath_array.push("//xbrli:xbrl/#{ns}:#{i}[starts-with(@contextRef,'#{c}_') and contains(@contextRef, '#{context_ref_name}')]")
-                end
+          xpath_array = (find_namespaces(doc) & namespaces_array).map do |ns|
+            item.map do |i|
+              context_array.map do |c|
+                "//xbrli:xbrl/#{ns}:#{i}[starts-with(@contextRef,'#{c}_') and contains(@contextRef, '#{context_ref_name}')]"
               end
             end
-          end
+          end.flatten
           find_value(xpath_array, doc)
         end
 
