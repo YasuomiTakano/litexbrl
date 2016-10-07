@@ -188,16 +188,13 @@ module LiteXBRL
         # 勘定科目の値を取得します
         #
         def find_value(xpath_array, doc)
-          content = ""
-          xpath_array.each do |x|
-            elm = doc.at_xpath x
-            unless elm.nil?
-              content = elm.content
-              break if content.nil?
-            end
+          xpath_array.lazy.map do |x|
+            doc.at_xpath(x)&.content
+          end.find do |content|
+            content != nil
           end
-          content
         end
+
         #
         # segmentを設定します
         #
