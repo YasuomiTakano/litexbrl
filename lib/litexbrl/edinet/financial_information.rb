@@ -196,10 +196,6 @@ module LiteXBRL
         #
         def find_value_reportable_segments_member(doc, id)
           namespaces_array = ['xbrldi']
-          # puts id
-          # puts "==="
-          # puts "id : #{id}"
-
           (find_namespaces(doc) & namespaces_array).map do |ns|
             find_value_specified_id(doc, id) do |id|
               "//xbrli:xbrl/xbrli:context#{id}/xbrli:scenario/#{ns}:explicitMember[@dimension='jpcrp_cor:OperatingSegmentsAxis']"

@@ -121,10 +121,6 @@ module LiteXBRL
         single_segment = doc.xpath "/xbrli:xbrl/jpcrp_cor:DescriptionOfFactThatCompanysBusinessComprisesSingleSegment"
         if single_segment.empty?
           elm_array = find_value_reportable_segments_member(doc, id[:reportable_segments_member])
-          # puts "===elm_array==="
-          # puts "#{elm_array}"
-          # puts "==============="
-          # puts elm_array
           elm_array.each do |elm|
             segment = segment_hash
             segment[:segment_context_ref_name] = elm.content.delete(":")
