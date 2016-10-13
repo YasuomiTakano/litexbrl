@@ -143,7 +143,6 @@ module LiteXBRL
         def find_value_jp_cor(doc, item, context, context_consolidation)
           context_array = ["#{context}", "#{context}_Consolidated", "#{context}_NonConsolidatedMember"]
           namespaces_array = ['jpcrp_cor', 'jppfs_cor', 'jpdei_cor']
-
           xpath_array = (find_namespaces(doc) & namespaces_array).map do |ns|
             item.map do |i|
               context_array.map do |c|
@@ -197,6 +196,9 @@ module LiteXBRL
         #
         def find_value_reportable_segments_member(doc, id)
           namespaces_array = ['xbrldi']
+          # puts id
+          # puts "==="
+          # puts "id : #{id}"
 
           (find_namespaces(doc) & namespaces_array).map do |ns|
             find_value_specified_id(doc, id) do |id|
