@@ -27,7 +27,6 @@ module LiteXBRL
               expect(security_report[:filing_date]).to eq "2016-08-09"
               expect(security_report[:current_fiscal_year_start_date]).to eq "2016-01-01"
               expect(security_report[:current_fiscal_year_end_date]).to eq "2016-12-31"
-              expect(security_report[:current_period_start_date]).to eq nil
               expect(security_report[:current_period_end_date]).to eq "2016-06-30"
               expect(security_report[:type_of_current_period]).to eq "Q2"
             end
