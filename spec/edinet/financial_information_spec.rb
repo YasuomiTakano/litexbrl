@@ -56,7 +56,11 @@ module LiteXBRL
 
         describe '#find_value_reportable_segments_member' do
           context 'japan accounting standards' do
-            let(:result_array){['<xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">jpcrp040300-q2r_E05041-000:InternetInfrastructureReportableSegmentsMember</xbrldi:explicitMember>', '<xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">jpcrp040300-q2r_E05041-000:OnlineAdvertisingAndMediaReportableSegmentsMember</xbrldi:explicitMember>', '<xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">jpcrp040300-q2r_E05041-000:InternetSecuritiesReportableSegmentsMember</xbrldi:explicitMember>', '<xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">jpcrp040300-q2r_E05041-000:MobileEntertainmentReportableSegmentsMember</xbrldi:explicitMember>', '<xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">jpcrp040300-q2r_E05041-000:IncubationReportableSegmentsMember</xbrldi:explicitMember>']}
+            let(:result_array){['<xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">jpcrp040300-q2r_E05041-000:InternetInfrastructureReportableSegmentsMember</xbrldi:explicitMember>',
+              '<xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">jpcrp040300-q2r_E05041-000:OnlineAdvertisingAndMediaReportableSegmentsMember</xbrldi:explicitMember>',
+              '<xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">jpcrp040300-q2r_E05041-000:InternetSecuritiesReportableSegmentsMember</xbrldi:explicitMember>',
+              '<xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">jpcrp040300-q2r_E05041-000:MobileEntertainmentReportableSegmentsMember</xbrldi:explicitMember>',
+              '<xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">jpcrp040300-q2r_E05041-000:IncubationReportableSegmentsMember</xbrldi:explicitMember>']}
 
             let(:id){"[starts-with(@id,'CurrentYTDDuration_') and not(substring-after(@id, 'ReportableSegmentsMember')) and (contains(@id, '-asr_') or contains(@id, '-q1r_') or contains(@id, '-q2r_') or contains(@id, '-q3r_'))]"}
 
