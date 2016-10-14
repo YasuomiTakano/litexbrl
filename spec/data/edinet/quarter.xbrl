@@ -861,7 +861,7 @@
   <jpcrp_cor:NameOfContactPersonAddressOfRegisteredHeadquarterCoverPage contextRef="FilingDateInstant">取締役副社長　グループ管理部門統括　試　験　テス　ト２</jpcrp_cor:NameOfContactPersonAddressOfRegisteredHeadquarterCoverPage>
   <jpcrp_cor:NearestPlaceOfContactCoverPage contextRef="FilingDateInstant">東京都テスト区テスト町0番0号</jpcrp_cor:NearestPlaceOfContactCoverPage>
   <jpcrp_cor:TelephoneNumberNearestPlaceOfContactCoverPage contextRef="FilingDateInstant">03-5456-2731</jpcrp_cor:TelephoneNumberNearestPlaceOfContactCoverPage>
-  <jpcrp_cor:NameOfContactPersonNearestPlaceOfContactCoverPage contextRef="FilingDateInstant">グループ総務部長　目　黒　隆　幸</jpcrp_cor:NameOfContactPersonNearestPlaceOfContactCoverPage>
+  <jpcrp_cor:NameOfContactPersonNearestPlaceOfContactCoverPage contextRef="FilingDateInstant">グループ総務部長　試　験　テス　ト３</jpcrp_cor:NameOfContactPersonNearestPlaceOfContactCoverPage>
   <jpcrp_cor:PlaceForPublicInspectionCoverPageTextBlock contextRef="FilingDateInstant">&lt;p class="smt_tblL" style="padding-left:0pt;padding-right:0pt;line-height:18pt;"&gt;株式会社東京証券取引所&lt;/p&gt;&lt;p class="smt_tblL" style="padding-left:10pt;padding-right:0pt;margin-top:10pt;line-height:18pt;"&gt;(東京都中央区日本橋兜町２番１号)&lt;/p&gt;</jpcrp_cor:PlaceForPublicInspectionCoverPageTextBlock>
   <jpdei_cor:EDINETCodeDEI contextRef="FilingDateInstant">E05041</jpdei_cor:EDINETCodeDEI>
   <jpdei_cor:FundCodeDEI xsi:nil="true" contextRef="FilingDateInstant"/>
