@@ -128,20 +128,23 @@ module LiteXBRL
           end
         end
 
+
         #
         # 有価証券報告書の勘定科目の値を取得します
         #
         def find_value_jp_cor(doc, item, context, context_consolidation)
           # puts "context_consolidation : #{context_consolidation}"
           find_value(doc, item, context) do |item, context|
-            "//xbrli:xbrl/jpcrp_cor:#{item}[@contextRef='#{context}' or @contextRef='#{context}_Consolidated' or @contextRef='#{context}_NonConsolidatedMember'] | //xbrli:xbrl/jppfs_cor:#{item}[@contextRef='#{context}' or @contextRef='#{context}_Consolidated' or @contextRef='#{context}_NonConsolidatedMember'] | //xbrli:xbrl/jpdei_cor:#{item}[@contextRef='#{context}' or @contextRef='#{context}_Consolidated' or @contextRef='#{context}_NonConsolidatedMember']"
+            # "//xbrli:xbrl/jpcrp_cor:#{item}[@contextRef='#{context}' or @contextRef='#{context}_Consolidated' or @contextRef='#{context}_NonConsolidatedMember'] | //xbrli:xbrl/jppfs_cor:#{item}[@contextRef='#{context}' or @contextRef='#{context}_Consolidated' or @contextRef='#{context}_NonConsolidatedMember'] | //xbrli:xbrl/jpdei_cor:#{item}[@contextRef='#{context}' or @contextRef='#{context}_Consolidated' or @contextRef='#{context}_NonConsolidatedMember']"
+            "//xbrli:xbrl/jpcrp_cor:#{item}[@contextRef='#{context}' or @contextRef='#{context}_Consolidated' or @contextRef='#{context}_NonConsolidatedMember'] | //xbrli:xbrl/jpdei_cor:#{item}[@contextRef='#{context}' or @contextRef='#{context}_Consolidated' or @contextRef='#{context}_NonConsolidatedMember']"
           end
         end
 
         def find_value_jp_cor_segment(doc, item, context_ref_name, context, context_consolidation)
 
           find_value(doc, item, context) do |item, context|
-            "//xbrli:xbrl/jpcrp_cor:#{item}[starts-with(@contextRef,'#{context}_') and contains(@contextRef, '#{context_ref_name}')] | //xbrli:xbrl/jppfs_cor:#{item}[starts-with(@contextRef,'#{context}_') and contains(@contextRef, '#{context_ref_name}')] | //xbrli:xbrl/jpdei_cor:#{item}[starts-with(@contextRef,'#{context}_') and contains(@contextRef, '#{context_ref_name}')]"
+            # "//xbrli:xbrl/jpcrp_cor:#{item}[starts-with(@contextRef,'#{context}_') and contains(@contextRef, '#{context_ref_name}')] | //xbrli:xbrl/jppfs_cor:#{item}[starts-with(@contextRef,'#{context}_') and contains(@contextRef, '#{context_ref_name}')] | //xbrli:xbrl/jpdei_cor:#{item}[starts-with(@contextRef,'#{context}_') and contains(@contextRef, '#{context_ref_name}')]"
+            "//xbrli:xbrl/jpcrp_cor:#{item}[starts-with(@contextRef,'#{context}_') and contains(@contextRef, '#{context_ref_name}')] | //xbrli:xbrl/jpdei_cor:#{item}[starts-with(@contextRef,'#{context}_') and contains(@contextRef, '#{context_ref_name}')]"
           end
         end
 
