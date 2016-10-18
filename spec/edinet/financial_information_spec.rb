@@ -13,7 +13,7 @@ module LiteXBRL
           context 'japan accounting standards' do
             let(:namespaces_array){['link', 'jpdei_cor', 'xbrldi', 'jpcrp040300-q2r_E05041-000', 'xlink', 'jpcrp_cor', 'xbrli', 'jppfs_cor', 'iso4217', 'xsi']}
             example 'when you get the name space' do
-              expect(FinancialInformation.send(:find_namespaces, doc("#{dir}/namespaces_test.xbrl"))).to match_array namespaces_array
+              expect(FinancialInformation.send(:find_namespaces, doc("#{dir}/find_namespaces_test.xbrl"))).to match_array namespaces_array
             end
           end
         end
