@@ -1,0 +1,5 @@
+  <?xml version="1.0" encoding="UTF-8"?>
+  <xbrli:xbrl xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:jpdei_cor="http://disclosure.edinet-fsa.go.jp/taxonomy/jpdei/2013-08-31/jpdei_cor" xmlns:xbrldi="http://xbrl.org/2006/xbrldi" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:jpcrp_cor="http://disclosure.edinet-fsa.go.jp/taxonomy/jpcrp/2015-03-31/jpcrp_cor" xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:jpcrp040300-q2r_E05041-000="http://disclosure.edinet-fsa.go.jp/jpcrp040300/q2r/001/E05041-000/2016-06-30/01/2016-08-09" xmlns:jppfs_cor="http://disclosure.edinet-fsa.go.jp/taxonomy/jppfs/2015-03-31/jppfs_cor" xmlns:iso4217="http://www.xbrl.org/2003/iso4217" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <jpcrp_cor:NetSalesSummaryOfBusinessResults contextRef="CurrentYTDDuration" unitRef="JPY" decimals="-6">66707000000</jpcrp_cor:NetSalesSummaryOfBusinessResults>
+    <jppfs_cor:NetSales contextRef="CurrentYTDDuration" unitRef="JPY" decimals="-6">66707000000</jppfs_cor:NetSales>
+  </xbrli:xbrl>

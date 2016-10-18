@@ -10,7 +10,7 @@ module LiteXBRL
       describe ".read doc" do
         context '日本会計基準' do
           context "四半期報告書" do
-            let(:xbrl) { SecurityReport.read doc("#{dir}/quarter.xbrl") }
+            let(:xbrl) { SecurityReport.read doc("#{dir}/quarter.xml") }
             let(:security_report) { xbrl[:security_report] }
             it do
               expect(security_report[:code]).to eq '1111'
