@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xbrli:xbrl  xmlns:xbrli="http://xbrli" xmlns:jppfs_cor="http://jppfs_cor" xmlns:jppfs_cor="http://jppfs_cor">
-  <jpcrp_cor:NetSalesSummaryOfBusinessResults contextRef="CurrentYTDDuration" unitRef="JPY" decimals="-6">66707000000</jpcrp_cor:NetSalesSummaryOfBusinessResults>
-  <jppfs_cor:NetSales contextRef="CurrentYTDDuration" unitRef="JPY" decimals="-6">66707000000</jppfs_cor:NetSales>
+  <jppfs_cor:Result3 contextRef="Context_Consolidation">6670</jppfs_cor:Result3>
 </xbrli:xbrl>

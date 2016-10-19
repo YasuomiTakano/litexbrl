@@ -21,11 +21,11 @@ module LiteXBRL
 
         describe '#find_value_jp_cor' do
           context 'japan accounting standards' do
-            let(:item){['NetSales', 'NetSalesSummaryOfBusinessResults', 'RevenueIFRSSummaryOfBusinessResults']}
-            let(:context){'CurrentYTDDuration'}
-            let(:context_consolidation){'Consolidated'}
+            let(:item){['Result1', 'Result2', 'Result3']}
+            let(:context){'Context'}
+            let(:context_consolidation){'Consolidation'}
             example 'when you get the net sales' do
-              expect(FinancialInformation.send(:find_value_jp_cor, doc("#{dir}/find_value_jp_cor_test.xml"), item, context, context_consolidation)).to eq '66707000000'
+              expect(FinancialInformation.send(:find_value_jp_cor, doc("#{dir}/find_value_jp_cor_test.xml"), item, context, context_consolidation)).to eq '6670'
             end
           end
         end
