@@ -19,7 +19,6 @@ module LiteXBRL
 
       def self.find_base_data(doc)
         consolidation, season = find_consolidation_and_season(doc)
-        # binding.pry
         context = context_hash(consolidation, season)
         id = id_hash(consolidation, season)
 
@@ -130,9 +129,6 @@ module LiteXBRL
             xbrl.segments.push segment
           end
         end
-
-
-
         xbrl
       end
 

@@ -18,7 +18,7 @@ module LiteXBRL
       NET_SALES = ['NetSales', 'NetSalesSummaryOfBusinessResults', 'RevenueIFRSSummaryOfBusinessResults']
 
       # 営業利益
-      OPERATING_INCOME = ['OperatingIncome', 'OperatingIncomeIFRSSummaryOfBusinessResults', 'GrossProfi']
+      OPERATING_INCOME = ['OperatingIncome', 'OperatingIncomeIFRSSummaryOfBusinessResults', 'GrossProfit']
 
       # 経常利益
       ORDINARY_INCOME = ['OrdinaryIncome', 'OrdinaryIncomeLossSummaryOfBusinessResults']

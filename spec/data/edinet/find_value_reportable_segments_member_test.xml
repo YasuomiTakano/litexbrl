@@ -1,0 +1,34 @@
+  <?xml version="1.0" encoding="UTF-8"?>
+  <xbrli:xbrl xmlns:xbrldi="http://example.com" xmlns:xbrli="http://example.com">
+
+    <xbrli:context id="CurrentYTDDuration_1-q2r_ReportableSegmentsMember">
+      <xbrli:scenario>
+        <xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">SegmentsMember1</xbrldi:explicitMember>
+      </xbrli:scenario>
+    </xbrli:context>
+
+    <xbrli:context id="CurrentYTDDuration_2-q2r_ReportableSegmentsMember">
+      <xbrli:scenario>
+        <xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">SegmentsMember2</xbrldi:explicitMember>
+      </xbrli:scenario>
+    </xbrli:context>
+
+    <xbrli:context id="CurrentYTDDuration_3-q2r_ReportableSegmentsMember">
+      <xbrli:scenario>
+        <xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">SegmentsMember3</xbrldi:explicitMember>
+      </xbrli:scenario>
+    </xbrli:context>
+
+    <xbrli:context id="CurrentYTDDuration_4-q2r_ReportableSegmentsMember">
+      <xbrli:scenario>
+        <xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">SegmentsMember4</xbrldi:explicitMember>
+      </xbrli:scenario>
+    </xbrli:context>
+
+    <xbrli:context id="CurrentYTDDuration_5-q2r_ReportableSegmentsMember">
+      <xbrli:scenario>
+        <xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">SegmentsMember5</xbrldi:explicitMember>
+      </xbrli:scenario>
+    </xbrli:context>
+
+  </xbrli:xbrl>
