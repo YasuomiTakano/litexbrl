@@ -20,9 +20,6 @@ module LiteXBRL
       def self.find_base_data(doc)
         consolidation, season = find_consolidation_and_season(doc)
         context = context_hash(consolidation, season)
-        puts "==="
-        puts context
-        puts "==="
         id = id_hash(consolidation, season)
 
         xbrl = new
