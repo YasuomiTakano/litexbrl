@@ -1,68 +1,33 @@
   <?xml version="1.0" encoding="UTF-8"?>
-  <xbrli:xbrl xmlns:xbrldi="http://xbrldi" xmlns:xbrli="http://xbrli">
+  <xbrli:xbrl xmlns:xbrldi="http://example.com" xmlns:xbrli="http://example.com">
 
-    <xbrli:context id="CurrentYTDDuration_jpcrp040300-q2r_E05041-000InternetInfrastructureReportableSegmentsMember">
-      <xbrli:entity>
-        <xbrli:identifier scheme="http://disclosure.edinet-fsa.go.jp">E05041-000</xbrli:identifier>
-      </xbrli:entity>
-      <xbrli:period>
-        <xbrli:startDate>2016-01-01</xbrli:startDate>
-        <xbrli:endDate>2016-06-30</xbrli:endDate>
-      </xbrli:period>
+    <xbrli:context id="CurrentYTDDuration_1-q2r_ReportableSegmentsMember">
       <xbrli:scenario>
-        <xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">jpcrp040300-q2r_E05041-000:InternetInfrastructureReportableSegmentsMember</xbrldi:explicitMember>
+        <xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">SegmentsMember1</xbrldi:explicitMember>
       </xbrli:scenario>
     </xbrli:context>
 
-    <xbrli:context id="CurrentYTDDuration_jpcrp040300-q2r_E05041-000OnlineAdvertisingAndMediaReportableSegmentsMember">
-      <xbrli:entity>
-        <xbrli:identifier scheme="http://disclosure.edinet-fsa.go.jp">E05041-000</xbrli:identifier>
-      </xbrli:entity>
-      <xbrli:period>
-        <xbrli:startDate>2016-01-01</xbrli:startDate>
-        <xbrli:endDate>2016-06-30</xbrli:endDate>
-      </xbrli:period>
+    <xbrli:context id="CurrentYTDDuration_2-q2r_ReportableSegmentsMember">
       <xbrli:scenario>
-        <xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">jpcrp040300-q2r_E05041-000:OnlineAdvertisingAndMediaReportableSegmentsMember</xbrldi:explicitMember>
+        <xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">SegmentsMember2</xbrldi:explicitMember>
       </xbrli:scenario>
     </xbrli:context>
 
-    <xbrli:context id="CurrentYTDDuration_jpcrp040300-q2r_E05041-000InternetSecuritiesReportableSegmentsMember">
-      <xbrli:entity>
-        <xbrli:identifier scheme="http://disclosure.edinet-fsa.go.jp">E05041-000</xbrli:identifier>
-      </xbrli:entity>
-      <xbrli:period>
-        <xbrli:startDate>2016-01-01</xbrli:startDate>
-        <xbrli:endDate>2016-06-30</xbrli:endDate>
-      </xbrli:period>
+    <xbrli:context id="CurrentYTDDuration_3-q2r_ReportableSegmentsMember">
       <xbrli:scenario>
-        <xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">jpcrp040300-q2r_E05041-000:InternetSecuritiesReportableSegmentsMember</xbrldi:explicitMember>
+        <xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">SegmentsMember3</xbrldi:explicitMember>
       </xbrli:scenario>
     </xbrli:context>
 
-    <xbrli:context id="CurrentYTDDuration_jpcrp040300-q2r_E05041-000MobileEntertainmentReportableSegmentsMember">
-      <xbrli:entity>
-        <xbrli:identifier scheme="http://disclosure.edinet-fsa.go.jp">E05041-000</xbrli:identifier>
-      </xbrli:entity>
-      <xbrli:period>
-        <xbrli:startDate>2016-01-01</xbrli:startDate>
-        <xbrli:endDate>2016-06-30</xbrli:endDate>
-      </xbrli:period>
+    <xbrli:context id="CurrentYTDDuration_4-q2r_ReportableSegmentsMember">
       <xbrli:scenario>
-        <xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">jpcrp040300-q2r_E05041-000:MobileEntertainmentReportableSegmentsMember</xbrldi:explicitMember>
+        <xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">SegmentsMember4</xbrldi:explicitMember>
       </xbrli:scenario>
     </xbrli:context>
 
-    <xbrli:context id="CurrentYTDDuration_jpcrp040300-q2r_E05041-000IncubationReportableSegmentsMember">
-      <xbrli:entity>
-        <xbrli:identifier scheme="http://disclosure.edinet-fsa.go.jp">E05041-000</xbrli:identifier>
-      </xbrli:entity>
-      <xbrli:period>
-        <xbrli:startDate>2016-01-01</xbrli:startDate>
-        <xbrli:endDate>2016-06-30</xbrli:endDate>
-      </xbrli:period>
+    <xbrli:context id="CurrentYTDDuration_5-q2r_ReportableSegmentsMember">
       <xbrli:scenario>
-        <xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">jpcrp040300-q2r_E05041-000:IncubationReportableSegmentsMember</xbrldi:explicitMember>
+        <xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">SegmentsMember5</xbrldi:explicitMember>
       </xbrli:scenario>
     </xbrli:context>
 
