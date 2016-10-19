@@ -23,7 +23,7 @@ module LiteXBRL
           context 'japan accounting standards' do
             let(:item){['Result1', 'Result2', 'Result3']}
             let(:context){'Context'}
-            let(:context_consolidation){'Consolidation'}
+            let(:context_consolidation){'Consolidated'}
             example 'when you get the net sales' do
               expect(FinancialInformation.send(:find_value_jp_cor, doc("#{dir}/find_value_jp_cor_test.xml"), item, context, context_consolidation)).to eq '6670'
             end
@@ -33,12 +33,12 @@ module LiteXBRL
 
         describe '#find_value_jp_cor_segment' do
           context 'japan accounting standards' do
-            let(:item){['NetSales', 'NetSalesSummaryOfBusinessResults', 'RevenueIFRSSummaryOfBusinessResults']}
-            let(:context_ref_name){'jpcrp040300-q2r_E05041-000InternetInfrastructureReportableSegmentsMember'}
-            let(:context){'CurrentYTDDuration'}
+            let(:item){['Result1', 'Result2', 'Result3']}
+            let(:context_ref_name){'SegmentsMemberName'}
+            let(:context){'Context'}
             let(:context_consolidation){'Consolidated'}
             example 'when you get a segment of net sales' do
-              expect(FinancialInformation.send(:find_value_jp_cor_segment, doc("#{dir}/find_value_jp_cor_segment_test.xml"), item, context_ref_name, context, context_consolidation)).to eq '31206000000'
+              expect(FinancialInformation.send(:find_value_jp_cor_segment, doc("#{dir}/find_value_jp_cor_segment_test.xml"), item, context_ref_name, context, context_consolidation)).to eq '3120'
             end
           end
         end
