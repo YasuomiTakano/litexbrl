@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xbrli:xbrl xmlns:xbrli="http://example.com" xmlns:jppfs_cor="http://example.com">
-  <jppfs_cor:Result3 contextRef="Context_Consolidated_SegmentsMemberName">3120</jppfs_cor:Result3>
+  <jppfs_cor:Result1 contextRef="Context_Consolidated_SegmentsMemberName">3120</jppfs_cor:Result1>
 </xbrli:xbrl>

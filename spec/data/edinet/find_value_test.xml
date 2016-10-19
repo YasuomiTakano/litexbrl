@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xbrli:xbrl xmlns:jpcrp_cor="http://example.com" xmlns:xbrli="http://example.com">
-  <jpcrp_cor:Result contextRef="Context">7671</jpcrp_cor:Result>
+  <jpcrp_cor:Result1 contextRef="Context">7671</jpcrp_cor:Result1>
 </xbrli:xbrl>

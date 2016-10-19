@@ -21,11 +21,19 @@ module LiteXBRL
 
         describe '#find_value_jp_cor' do
           context 'japan accounting standards' do
-            let(:item){['Result1', 'Result2', 'Result3']}
+            let(:item){['Result1']}
             let(:context){'Context'}
             let(:context_consolidation){'Consolidated'}
             example 'when you get the net sales' do
               expect(FinancialInformation.send(:find_value_jp_cor, doc("#{dir}/find_value_jp_cor_test.xml"), item, context, context_consolidation)).to eq '6670'
+            end
+          end
+          context 'japan accounting standards' do
+            let(:item){['Result2']}
+            let(:context){'Context'}
+            let(:context_consolidation){'Consolidated'}
+            example 'when you do not get the net sales' do
+              expect(FinancialInformation.send(:find_value_jp_cor, doc("#{dir}/find_value_jp_cor_test.xml"), item, context, context_consolidation)).to eq nil
             end
           end
         end
@@ -33,7 +41,7 @@ module LiteXBRL
 
         describe '#find_value_jp_cor_segment' do
           context 'japan accounting standards' do
-            let(:item){['Result1', 'Result2', 'Result3']}
+            let(:item){['Result1']}
             let(:context_ref_name){'SegmentsMemberName'}
             let(:context){'Context'}
             let(:context_consolidation){'Consolidated'}
@@ -46,7 +54,7 @@ module LiteXBRL
 
         describe '#find_value' do
           context 'japan accounting standards' do
-            let(:xpath_array){["//xbrli:xbrl/jpcrp_cor:Result[@contextRef='Context']"]}
+            let(:xpath_array){["//xbrli:xbrl/jpcrp_cor:Result1[@contextRef='Context']"]}
             example 'when you get the net sales by specifying the XPath' do
               expect(FinancialInformation.send(:find_value, xpath_array, doc("#{dir}/find_value_test.xml"))).to eq '7671'
             end
