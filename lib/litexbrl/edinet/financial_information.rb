@@ -54,9 +54,9 @@ module LiteXBRL
         #
         def id_hash(consolidation, season)
           raise StandardError.new("idが設定されていません。") unless season
-          year_duration = season == "Quarter" ? "YTDDuration" : "#{season}Duration"
+          duration = season == "FY" ? "YearDuration" : "YTDDuration"
           {
-            reportable_segments_member: "[starts-with(@id,'Current#{year_duration}_') and not(substring-after(@id, 'ReportableSegmentsMember')) and (contains(@id, '-asr_') or contains(@id, '-q1r_') or contains(@id, '-q2r_') or contains(@id, '-q3r_'))]"
+            reportable_segments_member: "[starts-with(@id,'Current#{duration}_') and not(substring-after(@id, 'ReportableSegmentsMember')) and (contains(@id, '-asr_') or contains(@id, '-q1r_') or contains(@id, '-q2r_') or contains(@id, '-q3r_'))]"
           }
         end
 
@@ -198,6 +198,7 @@ module LiteXBRL
         #
         def find_value_reportable_segments_member(doc, id)
           namespaces_array = ['xbrldi']
+          # puts "id : #{id}"
           (find_namespaces(doc) & namespaces_array).map do |ns|
             find_value_specified_id(doc, id) do |id|
               "//xbrli:xbrl/xbrli:context#{id}/xbrli:scenario/#{ns}:explicitMember[@dimension='jpcrp_cor:OperatingSegmentsAxis']"

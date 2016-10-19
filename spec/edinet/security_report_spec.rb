@@ -30,7 +30,6 @@ module LiteXBRL
               expect(security_report[:current_period_end_date]).to eq '2016-06-30'
               expect(security_report[:type_of_current_period]).to eq 'Q2'
 
-
               expect(security_report[:segments][0][:segment_context_ref_name]).to eq 'jpcrp040300-q2r_E05041-000InternetInfrastructureReportableSegmentsMember'
               expect(security_report[:segments][0][:segment_english_name]).to eq 'InternetInfrastructure'
               expect(security_report[:segments][0][:segment_sales]).to eq '31206000000'
