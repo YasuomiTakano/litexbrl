@@ -46,9 +46,9 @@ module LiteXBRL
 
         describe '#find_value' do
           context 'japan accounting standards' do
-            let(:xpath_array){["//xbrli:xbrl/jpcrp_cor:NetSalesSummaryOfBusinessResults[@contextRef='CurrentYTDDuration']"]}
+            let(:xpath_array){["//xbrli:xbrl/jpcrp_cor:Result[@contextRef='Context']"]}
             example 'when you get the net sales by specifying the XPath' do
-              expect(FinancialInformation.send(:find_value, xpath_array, doc("#{dir}/find_value_test.xml"))).to eq '66707000000'
+              expect(FinancialInformation.send(:find_value, xpath_array, doc("#{dir}/find_value_test.xml"))).to eq '7671'
             end
           end
         end
