@@ -109,6 +109,28 @@ module LiteXBRL
           end
         end
 
+        describe '#id_hash' do
+          context 'japan accounting standards' do
+            let(:consolidation){'Consolidated'}
+            let(:season_fy){'FY'}
+            let(:season_q1){'Q1'}
+            let(:result_array_fy){{:reportable_segments_member=>
+  "[starts-with(@id,'CurrentYearDuration_') and not(substring-after(@id, 'ReportableSegmentsMember')) and (contains(@id, '-asr_') or contains(@id, '-q1r_') or contains(@id, '-q2r_') or contains(@id, '-q3r_'))]"}}
+            let(:result_array_q1){{:reportable_segments_member=>
+  "[starts-with(@id,'CurrentYTDDuration_') and not(substring-after(@id, 'ReportableSegmentsMember')) and (contains(@id, '-asr_') or contains(@id, '-q1r_') or contains(@id, '-q2r_') or contains(@id, '-q3r_'))]"}}
+
+            example 'when you get the id hash of the year' do
+              # pp FinancialInformation.send(:id_hash, consolidation, season_fy)
+              expect(FinancialInformation.send(:id_hash, consolidation, season_fy)).to eq result_array_fy
+            end
+
+            example 'when you get a quarter of id hash' do
+              # pp FinancialInformation.send(:id_hash, consolidation, season_q1)
+              expect(FinancialInformation.send(:id_hash, consolidation, season_q1)).to eq result_array_q1
+            end
+          end
+        end
+
       end
 
     end
