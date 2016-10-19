@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbrli:xbrl  xmlns:xbrli="http://example.com" xmlns:jppfs_cor="http://example.com">
+  <jppfs_cor:Result1 contextRef="Context_Consolidated">6670</jppfs_cor:Result1>
+</xbrli:xbrl>

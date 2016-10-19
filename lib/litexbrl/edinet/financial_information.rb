@@ -60,6 +60,15 @@ module LiteXBRL
         end
 
         #
+        # ネームスペースを取得します
+        #
+        def find_namespaces(doc)
+          doc.namespaces.keys.map do |key|
+            key.split(":")[1]
+          end
+        end
+
+        #
         # 証券コードを取得します
         #
         def find_securities_code(doc, consolidation)
@@ -133,39 +142,40 @@ module LiteXBRL
         # 有価証券報告書の勘定科目の値を取得します
         #
         def find_value_jp_cor(doc, item, context, context_consolidation)
-          # puts "context_consolidation : #{context_consolidation}"
-          find_value(doc, item, context) do |item, context|
-            # "//xbrli:xbrl/jpcrp_cor:#{item}[@contextRef='#{context}' or @contextRef='#{context}_Consolidated' or @contextRef='#{context}_NonConsolidatedMember'] | //xbrli:xbrl/jppfs_cor:#{item}[@contextRef='#{context}' or @contextRef='#{context}_Consolidated' or @contextRef='#{context}_NonConsolidatedMember'] | //xbrli:xbrl/jpdei_cor:#{item}[@contextRef='#{context}' or @contextRef='#{context}_Consolidated' or @contextRef='#{context}_NonConsolidatedMember']"
-            "//xbrli:xbrl/jpcrp_cor:#{item}[@contextRef='#{context}' or @contextRef='#{context}_Consolidated' or @contextRef='#{context}_NonConsolidatedMember'] | //xbrli:xbrl/jpdei_cor:#{item}[@contextRef='#{context}' or @contextRef='#{context}_Consolidated' or @contextRef='#{context}_NonConsolidatedMember']"
-          end
+          context_array = ["#{context}", "#{context}_Consolidated", "#{context}_NonConsolidatedMember"]
+          namespaces_array = ['jpcrp_cor', 'jppfs_cor', 'jpdei_cor']
+          xpath_array = (find_namespaces(doc) & namespaces_array).map do |ns|
+            item.map do |i|
+              context_array.map do |c|
+                "//xbrli:xbrl/#{ns}:#{i}[@contextRef='#{c}']"
+              end
+            end
+          end.flatten
+          find_value(xpath_array, doc)
         end
 
         def find_value_jp_cor_segment(doc, item, context_ref_name, context, context_consolidation)
+          context_array = ["#{context}", "#{context}_Consolidated", "#{context}_NonConsolidatedMember"]
+          namespaces_array = ['jpcrp_cor', 'jppfs_cor', 'jpdei_cor']
 
-          find_value(doc, item, context) do |item, context|
-            # "//xbrli:xbrl/jpcrp_cor:#{item}[starts-with(@contextRef,'#{context}_') and contains(@contextRef, '#{context_ref_name}')] | //xbrli:xbrl/jppfs_cor:#{item}[starts-with(@contextRef,'#{context}_') and contains(@contextRef, '#{context_ref_name}')] | //xbrli:xbrl/jpdei_cor:#{item}[starts-with(@contextRef,'#{context}_') and contains(@contextRef, '#{context_ref_name}')]"
-            "//xbrli:xbrl/jpcrp_cor:#{item}[starts-with(@contextRef,'#{context}_') and contains(@contextRef, '#{context_ref_name}')] | //xbrli:xbrl/jpdei_cor:#{item}[starts-with(@contextRef,'#{context}_') and contains(@contextRef, '#{context_ref_name}')]"
-          end
+          xpath_array = (find_namespaces(doc) & namespaces_array).map do |ns|
+            item.map do |i|
+              context_array.map do |c|
+                "//xbrli:xbrl/#{ns}:#{i}[starts-with(@contextRef,'#{c}_') and contains(@contextRef, '#{context_ref_name}')]"
+              end
+            end
+          end.flatten
+          find_value(xpath_array, doc)
         end
 
         #
         # 勘定科目の値を取得します
         #
-        def find_value(doc, item, context)
-          # 配列の場合、いずれかに該当するもの
-          if item[0].is_a? String
-            xpath = item.map {|item| yield(item, context) }.join('|')
-            elm = doc.at_xpath xpath
-            elm.content if elm
-          # 2次元配列の場合、先頭の配列から優先に
-          elsif item[0].is_a? Array
-            item.each do |item|
-              xpath = item.map {|item| yield(item, context) }.join('|')
-              elm = doc.at_xpath xpath
-              return elm.content if elm
-            end
-
-            nil # 該当なし
+        def find_value(xpath_array, doc)
+          xpath_array.lazy.map do |x|
+            doc.at_xpath(x)&.content
+          end.find do |content|
+            content != nil
           end
         end
 
@@ -186,9 +196,12 @@ module LiteXBRL
         # 有価証券報告書の報告セグメントの値を取得します
         #
         def find_value_reportable_segments_member(doc, id)
-          find_value_specified_id(doc, id) do |id|
-            "//xbrli:xbrl/xbrli:context#{id}/xbrli:scenario/xbrldi:explicitMember[@dimension='jpcrp_cor:OperatingSegmentsAxis']"
-          end
+          namespaces_array = ['xbrldi']
+          (find_namespaces(doc) & namespaces_array).map do |ns|
+            find_value_specified_id(doc, id) do |id|
+              "//xbrli:xbrl/xbrli:context#{id}/xbrli:scenario/#{ns}:explicitMember[@dimension='jpcrp_cor:OperatingSegmentsAxis']"
+            end
+          end.flatten
         end
 
         #
