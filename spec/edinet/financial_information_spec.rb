@@ -64,7 +64,8 @@ module LiteXBRL
 
         describe '#find_value_reportable_segments_member' do
           context 'japan accounting standards' do
-            let(:result_array){['<xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">SegmentsMember1</xbrldi:explicitMember>',
+            let(:result_array){[
+              '<xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">SegmentsMember1</xbrldi:explicitMember>',
               '<xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">SegmentsMember2</xbrldi:explicitMember>',
               '<xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">SegmentsMember3</xbrldi:explicitMember>',
               '<xbrldi:explicitMember dimension="jpcrp_cor:OperatingSegmentsAxis">SegmentsMember4</xbrldi:explicitMember>',
@@ -77,6 +78,37 @@ module LiteXBRL
             end
           end
         end
+
+        describe '#context_hash' do
+          context 'japan accounting standards' do
+            let(:consolidation){'Consolidated'}
+            let(:season_fy){'FY'}
+            let(:season_q1){'Q1'}
+            let(:result_array_fy){{
+               :context_duration=>"CurrentYearDuration",
+               :context_consolidation=>"Consolidated",
+               :context_prior_duration=>"PriorYearDuration",
+               :context_instant=>"CurrentYearInstant",
+               :context_instant_consolidation=>"CurrentYearInstant_Consolidated",
+               :filing_date_instant=>"FilingDateInstant"}}
+
+            let(:result_array_q1){{
+               :context_duration=>"CurrentYTDDuration",
+               :context_consolidation=>"Consolidated",
+               :context_prior_duration=>"PriorYTDDuration",
+               :context_instant=>"CurrentQuarterInstant",
+               :context_instant_consolidation=>"CurrentQuarterInstant_Consolidated",
+               :filing_date_instant=>"FilingDateInstant"}}
+            example 'when you get the context hash of the year' do
+              expect(FinancialInformation.send(:context_hash, consolidation, season_fy)).to eq result_array_fy
+            end
+
+            example 'when you get a quarter of context hash' do
+              expect(FinancialInformation.send(:context_hash, consolidation, season_q1)).to eq result_array_q1
+            end
+          end
+        end
+
       end
 
     end

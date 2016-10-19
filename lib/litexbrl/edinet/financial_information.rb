@@ -44,7 +44,6 @@ module LiteXBRL
             context_prior_duration: "Prior#{duration}",
             context_instant: "Current#{period}Instant",
             context_instant_consolidation: "Current#{period}Instant_#{consolidation}",
-            context_forecast: ->(quarter) { quarter == 4 ? "Next#{duration}" : "Current#{duration}"},
             filing_date_instant: "FilingDateInstant",
           }
         end
