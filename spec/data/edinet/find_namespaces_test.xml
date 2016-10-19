@@ -1,2 +1,2 @@
 <?xml version='1.0' encoding='utf-8'?>
-<xbrli:xbrl xmlns:hoge="http://hoge" xmlns:fuga="http://fuga" ></xbrli:xbrl>
+<xbrli:xbrl xmlns:hoge="http://example.com" xmlns:fuga="http://example.com" ></xbrli:xbrl>
