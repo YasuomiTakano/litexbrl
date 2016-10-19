@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xbrli:xbrl xmlns:xbrli="http://xbrli" xmlns:jppfs_cor="http://jppfs_cor">
-  <jppfs_cor:Result3 contextRef="Context_Consolidated_SegmentsMemberName" unitRef="JPY" decimals="-6">3120</jppfs_cor:Result3>
+  <jppfs_cor:Result3 contextRef="Context_Consolidated_SegmentsMemberName">3120</jppfs_cor:Result3>
 </xbrli:xbrl>
