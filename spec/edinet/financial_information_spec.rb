@@ -91,7 +91,6 @@ module LiteXBRL
                :context_instant=>"CurrentYearInstant",
                :context_instant_consolidation=>"CurrentYearInstant_Consolidated",
                :filing_date_instant=>"FilingDateInstant"}}
-
             let(:result_array_q1){{
                :context_duration=>"CurrentYTDDuration",
                :context_consolidation=>"Consolidated",
@@ -99,6 +98,7 @@ module LiteXBRL
                :context_instant=>"CurrentQuarterInstant",
                :context_instant_consolidation=>"CurrentQuarterInstant_Consolidated",
                :filing_date_instant=>"FilingDateInstant"}}
+
             example 'when you get the context hash of the year' do
               expect(FinancialInformation.send(:context_hash, consolidation, season_fy)).to eq result_array_fy
             end
