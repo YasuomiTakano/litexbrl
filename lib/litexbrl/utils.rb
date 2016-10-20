@@ -79,8 +79,12 @@ module LiteXBRL
     end
 
     def to_segment_english_name(elm)
+      removed_str = [
+        'ReportableSegmentsMember',
+        'ReportableSegmentMember']
+
       /:/ =~ elm
-      $'.gsub!(/ReportableSegmentsMember/,'')
+      $'.gsub!(/#{removed_str.join('|')}/,'')
     end
   end
 end
