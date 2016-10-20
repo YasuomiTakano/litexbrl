@@ -129,6 +129,36 @@ module LiteXBRL
           end
         end
 
+        describe '#duration_judgment' do
+          context 'japan accounting standards' do
+            let(:season_fy){'FY'}
+            let(:season_q1){'Q1'}
+
+            example 'when you get the duration of the year' do
+              expect(FinancialInformation.send(:duration_judgment, season_fy)).to eq 'YearDuration'
+            end
+
+            example 'when you get a quarter of duration' do
+              expect(FinancialInformation.send(:duration_judgment, season_q1)).to eq 'YTDDuration'
+            end
+          end
+        end
+
+        describe '#period_judgment' do
+          context 'japan accounting standards' do
+            let(:season_fy){'FY'}
+            let(:season_q1){'Q1'}
+
+            example 'when you get the period of the year' do
+              expect(FinancialInformation.send(:period_judgment, season_fy)).to eq 'Year'
+            end
+
+            example 'when you get a quarter of period' do
+              expect(FinancialInformation.send(:period_judgment, season_q1)).to eq 'Quarter'
+            end
+          end
+        end
+
       end
 
     end
