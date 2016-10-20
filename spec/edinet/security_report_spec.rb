@@ -56,6 +56,17 @@ module LiteXBRL
         end
       end
 
+      describe 'methods test' do
+
+        describe '#find_season' do
+          context 'japan accounting standards' do
+            example 'when you get the season' do
+              expect(SecurityReport.send(:find_season, doc("#{dir}/find_season_test.xml"))).to eq 'Q2'
+            end
+          end
+        end
+      end
+
     end
   end
 end

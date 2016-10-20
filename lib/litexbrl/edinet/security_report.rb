@@ -40,12 +40,12 @@ module LiteXBRL
 
       def self.find_consolidation_and_season(doc)
         consolidation = find_consolidation(doc)
-        season = find_season(doc, consolidation)
+        season = find_season(doc)
 
         # 連結で取れない場合、非連結にする
         unless season
           consolidation = "NonConsolidatedMember"
-          season = find_season(doc, consolidation)
+          season = find_season(doc)
         end
 
         return consolidation, season
@@ -54,7 +54,7 @@ module LiteXBRL
       #
       # 通期・四半期を取得します
       #
-      def self.find_season(doc, consolidation)
+      def self.find_season(doc)
         doc.at_xpath("/xbrli:xbrl/jpdei_cor:TypeOfCurrentPeriodDEI")&.content
       end
 
