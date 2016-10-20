@@ -30,14 +30,22 @@ module LiteXBRL
           end
         end
 
+
+        def duration_judgment(season)
+          season == "FY" ? "YearDuration" : "YTDDuration"
+        end
+
+        def period_judgment(season)
+          season == "FY" ? "Year" : "Quarter"
+        end
         #
         # contextを設定します
         #
         def context_hash(consolidation, season)
           raise StandardError.new("通期・四半期が設定されていません。") unless season
 
-          duration = season == "FY" ? "YearDuration" : "YTDDuration"
-          period = season == "FY" ? "Year" : "Quarter"
+          duration = duration_judgment(season)
+          period = period_judgment(season)
           {
             context_duration: "Current#{duration}",
             context_consolidation: "#{consolidation}",
@@ -53,7 +61,7 @@ module LiteXBRL
         #
         def id_hash(consolidation, season)
           raise StandardError.new("idが設定されていません。") unless season
-          duration = season == "FY" ? "YearDuration" : "YTDDuration"
+          duration = duration_judgment(season)
           {
             reportable_segments_member: "[starts-with(@id,'Current#{duration}_') and not(substring-after(@id, 'ReportableSegmentsMember')) and (contains(@id, '-asr_') or contains(@id, '-q1r_') or contains(@id, '-q2r_') or contains(@id, '-q3r_'))]"
           }
