@@ -39,16 +39,7 @@ module LiteXBRL
       end
 
       def self.find_consolidation_and_season(doc)
-        consolidation = find_consolidation(doc)
-        season = find_season(doc)
-
-        # 連結で取れない場合、非連結にする
-        unless season
-          consolidation = "NonConsolidatedMember"
-          season = find_season(doc)
-        end
-
-        return consolidation, season
+        return find_consolidation(doc), find_season(doc)
       end
 
       #
