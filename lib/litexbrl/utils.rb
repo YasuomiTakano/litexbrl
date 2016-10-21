@@ -82,9 +82,7 @@ module LiteXBRL
       removed_str = [
         'ReportableSegmentsMember',
         'ReportableSegmentMember']
-
-      /:/ =~ elm
-      $'.gsub!(/#{removed_str.join('|')}/,'')
+      elm.content.match(%r{:(.+?)#{removed_str.join('|')}})[1]
     end
   end
 end
