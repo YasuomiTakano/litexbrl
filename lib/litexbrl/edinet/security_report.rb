@@ -119,7 +119,7 @@ module LiteXBRL
         xbrl.single_segment = find_value_jp_cor(doc, SINGLE_SEGMENT, context[:context_duration], context[:context_consolidation])
 
         # セグメント情報
-        xbrl.segments = Array.new()
+        xbrl.segments = []
 
         if xbrl.single_segment.nil?
           elm_array = find_value_reportable_segments_member(doc, id[:reportable_segments_member])
