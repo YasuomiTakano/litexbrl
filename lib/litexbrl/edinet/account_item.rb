@@ -60,6 +60,9 @@ module LiteXBRL
       # 従業員数
       NUMBER_OF_EMPLOYEES = ['NumberOfEmployees']
 
+      # 単一セグメント
+      SINGLE_SEGMENT = ['DescriptionOfFactThatCompanysBusinessComprisesSingleSegment']
+
       # セグメント毎のcontextRef
       SEGMENT_CONTEXT_REF_NAME = ['']
 
