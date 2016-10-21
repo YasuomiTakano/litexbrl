@@ -79,10 +79,10 @@ module LiteXBRL
     end
 
     def to_segment_english_name(elm)
-      removed_str = [
+      removed_str_array = [
         'ReportableSegmentsMember',
         'ReportableSegmentMember']
-      elm.content.match(%r{:(.+?)#{removed_str.join('|')}})[1]
+      elm.match(%r{:(.*)})[1].gsub!(/#{removed_str_array.join('|')}/,'')
     end
   end
 end
