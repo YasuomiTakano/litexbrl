@@ -7,7 +7,6 @@ module LiteXBRL
       class << self
 
         private
-
         def read(doc)
           xbrl, accounting_base, context = find_base_data(doc)
 
@@ -30,11 +29,12 @@ module LiteXBRL
           end
         end
 
-
+        private
         def duration_judgment(season)
           season == "FY" ? "YearDuration" : "YTDDuration"
         end
 
+        private
         def period_judgment(season)
           season == "FY" ? "Year" : "Quarter"
         end
