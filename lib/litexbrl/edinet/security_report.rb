@@ -119,18 +119,16 @@ module LiteXBRL
         xbrl.single_segment = find_value_jp_cor(doc, SINGLE_SEGMENT, context[:context_duration], context[:context_consolidation])
 
         # セグメント情報
-        xbrl.segments = []
 
-        if xbrl.single_segment.nil?
-          elm_array = find_value_reportable_segments_member(doc, id[:reportable_segments_member])
-          elm_array.each do |elm|
-            segment = segment_hash
-            segment[:segment_context_ref_name] = elm.content.delete(":")
-            segment[:segment_english_name] = to_segment_english_name(elm)
-            segment[:segment_sales] = find_value_jp_cor_segment(doc, NET_SALES, segment[:segment_context_ref_name], context[:context_duration], context[:context_consolidation])
-            segment[:segment_operating_profit] = find_value_jp_cor_segment(doc, OPERATING_INCOME, segment[:segment_context_ref_name], context[:context_duration], context[:context_consolidation])
-            xbrl.segments.push segment
-          end
+        return xbrl unless xbrl.single_segment.nil?
+        elm_array = find_value_reportable_segments_member(doc, id[:reportable_segments_member])
+        xbrl.segments = elm_array.map do |elm|
+          segment = segment_hash
+          segment[:segment_context_ref_name] = elm.content.delete(":")
+          segment[:segment_english_name] = to_segment_english_name(elm)
+          segment[:segment_sales] = find_value_jp_cor_segment(doc, NET_SALES, segment[:segment_context_ref_name], context[:context_duration], context[:context_consolidation])
+          segment[:segment_operating_profit] = find_value_jp_cor_segment(doc, OPERATING_INCOME, segment[:segment_context_ref_name], context[:context_duration], context[:context_consolidation])
+          segment
         end
         xbrl
       end
