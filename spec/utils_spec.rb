@@ -106,5 +106,19 @@ module LiteXBRL
       end
     end
 
+    describe '#to_segment_english_name' do
+      context 'セグメント名(英語)の取得' do
+        let(:elm_1) { "hoge:Result1_ReportableSegmentsMember" }
+        let(:elm_2) { "fuga:Result2_ReportableSegmentMember" }
+
+        it "末尾がReportableSegmentsMemberの場合" do
+          expect(to_segment_english_name elm_1).to eq "Result1_"
+        end
+        it "末尾がReportableSegmentMemberの場合" do
+          expect(to_segment_english_name elm_2).to eq "Result2_"
+        end
+      end
+    end
+
   end
 end
