@@ -39,40 +39,14 @@ module LiteXBRL
       end
 
       def self.find_consolidation_and_season(doc)
-        consolidation = find_consolidation(doc)
-        season = find_season(doc, consolidation)
-
-        # 連結で取れない場合、非連結にする
-        unless season
-          consolidation = "NonConsolidatedMember"
-          season = find_season(doc, consolidation)
-        end
-
-        return consolidation, season
+        return find_consolidation(doc), find_season(doc)
       end
 
       #
       # 通期・四半期を取得します
       #
-      def self.find_season(doc, consolidation)
-
-        year = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYearInstant_#{consolidation}' or @id='CurrentYearInstant']/xbrli:entity/xbrli:identifier")
-        quarter = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentQuarterInstant_#{consolidation}' or @id='CurrentQuarterInstant']/xbrli:entity/xbrli:identifier")
-        q1 = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='Prior1QuarterInstant_#{consolidation}' or @id='Prior1QuarterInstant']/xbrli:entity/xbrli:identifier")
-        q2 = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='Prior2QuarterInstant_#{consolidation}' or @id='Prior2QuarterInstant']/xbrli:entity/xbrli:identifier")
-        q3 = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='Prior3QuarterInstant_#{consolidation}' or @id='Prior3QuarterInstant']/xbrli:entity/xbrli:identifier")
-
-        if year
-          "Year"
-        elsif quarter
-          "Quarter"
-        elsif q1
-          "AccumulatedQ1"
-        elsif q2
-          "AccumulatedQ2"
-        elsif q3
-          "AccumulatedQ3"
-        end
+      def self.find_season(doc)
+        doc.at_xpath("/xbrli:xbrl/jpdei_cor:TypeOfCurrentPeriodDEI")&.content
       end
 
       def self.find_data(doc, xbrl, context, id)
