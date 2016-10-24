@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbrli:xbrl xmlns:jpdei_cor="http://example.com" xmlns:xbrli="http://example.com">
+  <jpdei_cor:TypeOfCurrentPeriodDEI contextRef="FilingDateInstant">Q2</jpdei_cor:TypeOfCurrentPeriodDEI>
+</xbrli:xbrl>

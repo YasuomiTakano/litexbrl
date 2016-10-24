@@ -7,7 +7,6 @@ module LiteXBRL
       class << self
 
         private
-
         def read(doc)
           xbrl, accounting_base, context = find_base_data(doc)
 
@@ -30,20 +29,27 @@ module LiteXBRL
           end
         end
 
+        def duration_judgment(season)
+          season == "FY" ? "YearDuration" : "YTDDuration"
+        end
+
+        def period_judgment(season)
+          season == "FY" ? "Year" : "Quarter"
+        end
         #
         # contextを設定します
         #
         def context_hash(consolidation, season)
           raise StandardError.new("通期・四半期が設定されていません。") unless season
 
-          year_duration = season == "Quarter" ? "YTDDuration" : "#{season}Duration"
+          duration = duration_judgment(season)
+          period = period_judgment(season)
           {
-            context_duration: "Current#{year_duration}",
+            context_duration: "Current#{duration}",
             context_consolidation: "#{consolidation}",
-            context_prior_duration: "Prior#{year_duration}",
-            context_instant: "Current#{season}Instant",
-            context_instant_consolidation: "Current#{season}Instant_#{consolidation}",
-            context_forecast: ->(quarter) { quarter == 4 ? "Next#{year_duration}" : "Current#{year_duration}"},
+            context_prior_duration: "Prior#{duration}",
+            context_instant: "Current#{period}Instant",
+            context_instant_consolidation: "Current#{period}Instant_#{consolidation}",
             filing_date_instant: "FilingDateInstant",
           }
         end
@@ -53,9 +59,9 @@ module LiteXBRL
         #
         def id_hash(consolidation, season)
           raise StandardError.new("idが設定されていません。") unless season
-          year_duration = season == "Quarter" ? "YTDDuration" : "#{season}Duration"
+          duration = duration_judgment(season)
           {
-            reportable_segments_member: "[starts-with(@id,'Current#{year_duration}_') and not(substring-after(@id, 'ReportableSegmentsMember')) and (contains(@id, '-asr_') or contains(@id, '-q1r_') or contains(@id, '-q2r_') or contains(@id, '-q3r_'))]"
+            reportable_segments_member: "[starts-with(@id,'Current#{duration}_') and not(substring-after(@id, 'ReportableSegmentsMember')) and (contains(@id, '-asr_') or contains(@id, '-q1r_') or contains(@id, '-q2r_') or contains(@id, '-q3r_'))]"
           }
         end
 
@@ -136,6 +142,7 @@ module LiteXBRL
             end
           end
         end
+
 
         #
         # 有価証券報告書の勘定科目の値を取得します
