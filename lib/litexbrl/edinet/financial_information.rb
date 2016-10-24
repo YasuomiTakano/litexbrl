@@ -19,11 +19,10 @@ module LiteXBRL
         def find_consolidation(doc)
           cons = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYearDuration' or @id='CurrentYTDDuration']/xbrli:entity/xbrli:identifier")
           non_cons = doc.at_xpath("//xbrli:xbrl/xbrli:context[@id='CurrentYearDuration_NonConsolidatedMember' or @id='CurrentYTDDuration_NonConsolidatedMember']/xbrli:entity/xbrli:identifier")
-
-          if cons
-            "Consolidated"
-          elsif non_cons
+          if non_cons
             "NonConsolidatedMember"
+          elsif cons
+            "Consolidated"
           else
             raise StandardError.new("連結・非連結ともに該当しません。")
           end
