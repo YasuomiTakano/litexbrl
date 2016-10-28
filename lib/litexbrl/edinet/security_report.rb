@@ -71,6 +71,9 @@ module LiteXBRL
         # 提出日
         xbrl.filing_date = find_value_jp_cor(doc, FILING_DATE, context[:filing_date_instant], context[:context_consolidation])
 
+        # EDINETコード
+        xbrl.edinet_code = find_value_jp_cor(doc, EDINET_CODE, context[:filing_date_instant], context[:context_consolidation])
+
         # 当事業年度開始日
         xbrl.current_fiscal_year_start_date = find_value_jp_cor(doc, CURRENT_FISCAL_YEAR_START_DATE, context[:filing_date_instant], context[:context_consolidation])
 
