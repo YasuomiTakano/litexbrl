@@ -9,7 +9,7 @@ module LiteXBRL
         :change_in_prior_net_sales, :change_in_prior_operating_income, :change_in_prior_ordinary_income, :change_in_prior_net_income,
         :forecast_net_sales, :forecast_operating_income, :forecast_ordinary_income, :forecast_net_income, :forecast_net_income_per_share,
         :change_in_forecast_net_sales, :change_in_forecast_operating_income, :change_in_forecast_ordinary_income, :change_in_forecast_net_income,
-        :owners_equity, :number_of_shares, :number_of_treasury_stock, :net_assets_per_share, :document_title_cover_page, :fiscal_year_cover_page, :company_name, :filing_date, :current_fiscal_year_start_date, :current_fiscal_year_end_date, :current_period_start_date, :current_period_end_date, :type_of_current_period, :number_of_employees, :single_segment, :segments, :segment_context_ref_name, :segment_english_name, :segment_sales, :egment_operating_profit
+        :owners_equity, :number_of_shares, :number_of_treasury_stock, :net_assets_per_share, :document_title_cover_page, :fiscal_year_cover_page, :company_name, :filing_date, :edinet_code, :current_fiscal_year_start_date, :current_fiscal_year_end_date, :current_period_start_date, :current_period_end_date, :type_of_current_period, :number_of_employees, :single_segment, :segments, :segment_context_ref_name, :segment_english_name, :segment_sales, :egment_operating_profit
 
       def attributes
         {
@@ -44,6 +44,7 @@ module LiteXBRL
           fiscal_year_cover_page: fiscal_year_cover_page,
           company_name: company_name,
           filing_date: filing_date,
+          edinet_code: edinet_code,
           current_fiscal_year_start_date: current_fiscal_year_start_date,
           current_fiscal_year_end_date: current_fiscal_year_end_date,
           current_period_start_date: current_period_start_date,

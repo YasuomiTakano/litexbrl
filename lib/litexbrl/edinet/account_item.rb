@@ -42,6 +42,9 @@ module LiteXBRL
       # 提出日
       FILING_DATE = ['FilingDateCoverPage']
 
+      # EDINETコード
+      EDINET_CODE = ['EDINETCodeDEI']
+
       # 当事業年度開始日
       CURRENT_FISCAL_YEAR_START_DATE = ['CurrentFiscalYearStartDateDEI']
 
